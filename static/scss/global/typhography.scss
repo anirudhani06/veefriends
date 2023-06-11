@@ -1,0 +1,36 @@
+@use '../utils' as *;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+}
+
+p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: clamp(rem(22), 14 * 1.5vw, rem(32));
+}
+h2 {
+  font-size: clamp(rem(18), calc(12 * 1.5vw), rem(28));
+}
+h3 {
+  font-size: clamp(rem(16), 10 * 1.5vw, rem(24));
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a,
+a:active,
+a:visited {
+  text-decoration: none;
+}

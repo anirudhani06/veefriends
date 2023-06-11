@@ -1,0 +1,169 @@
+{% extends 'main.html' %}{% load static %} {% block content %}
+
+<main id="ChatRoom" class="chat_room wrapper">
+  <div class="chat_room__grid w-100">
+    <!-- sidebar  -->
+    {% include 'sidebar.html' %}
+    <!-- sidebar end -->
+    <div class="chat_room__grid-feed">
+      <div class="chat_room__grid-feed-header flex flex-ai-c flex-jc-sb">
+        <div class="flex flex-ai-c flex-jc-s gp-12">
+          <a href="{{request.META.HTTP_REFERER}}">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-arrow-left"
+            >
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+          </a>
+          <div class="room_details">
+            <div class="flex flex-ai-c gp-12">
+              <button class="active" style="display: inline-block">{{room_name}}</button
+              ><small>{{room.category}}</small>
+            </div>
+            {% if request.user.profile == room.owner %}
+            <small>Created by you</small>
+            {% else %}
+            <small>Created by {{room.owner.name}}</small>
+            {% endif %}
+          </div>
+        </div>
+        <div>
+          <a href="#Members" class="members_count">{{room.members.all.count}} members</a>
+          {% if room.owner == request.user.profile %}
+          <a href="{% url 'exit_room' room.room %}" class="exit_room">Delete room</a>
+          {% else %}
+          <a href="{% url 'exit_room' room.room %}" class="exit_room">Exit room</a>
+          {% endif %}
+        </div>
+      </div>
+      <section class="chat_room_content">
+        <div id="RoomChatBox">
+          <ul id="RoomChatBoxChat">
+            {% for chat in chat_messages %} {% if chat.user == request.user.profile %}
+            <li class="right chat">
+              <div class="details flex flex-ai-c flex-jc-sb">
+                <a href="" class="username">{{chat.user.username}}</a>
+                <small class="timestamp">{{chat.created_at|timesince}} ago</small>
+              </div>
+              <p class="body">{{chat.message}}</p>
+            </li>
+            {% else %}
+            <li class="left chat">
+              <div class="details flex flex-ai-c flex-jc-sb">
+                <a href="" class="username">{{chat.user.username}}</a>
+                <small class="timestamp">{{chat.created_at|timesince}} ago</small>
+              </div>
+              <p class="body">{{chat.message}}</p>
+            </li>
+            {% endif %} {% endfor %}
+          </ul>
+        </div>
+        <input type="text" placeholder="Write something" id="ChatInput" />
+        <input type="hidden" id="ChatInputSubmit" />
+        <div class="chat_room_members">
+          <div class="title flex flex-ai-c flex-jc-sb">
+            <span>Members</span>
+            <form action="" method="get" class="search_member">
+              <input type="text" placeholder="Search member" />
+            </form>
+          </div>
+          <ul id="Members">
+            {% for member in room_members %}
+            <li class="flex flex-ai-c flex-jc-sb">
+              <div class="flex flex-ai-c flex-jc-s gp-12">
+                <a href="" class="user-img">
+                  <img src="/static/assets/images/default.jpg" alt="" />
+                </a>
+                <div>
+                  <span class="name">{{member.name}}</span>
+                  <a href="" class="username">@{{member.username}}</a>
+                </div>
+              </div>
+              {% if request.user.profile == room.owner %} {% if member != request.user.profile %}
+              <a href="{% url 'remove_user' room.room member.username %}" class="remove"
+                >Remove user</a
+              >
+              {% endif %} {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </section>
+    </div>
+    <!-- rightSidebar  -->
+    {% include 'activitybar.html' %}
+    <!-- rightSidebar end -->
+  </div>
+</main>
+
+<script>
+  const roomName = '{{room.room}}';
+  const currentUser = '{{request.user.profile.username}}';
+  let url = `ws://${window.location.host}/ws/chat/${roomName}/`;
+  const chatSocket = new WebSocket(url);
+
+  chatSocket.onmessage = (e) => {
+    data = JSON.parse(e.data);
+    if (currentUser === data.user) {
+      document.getElementById('RoomChatBoxChat').insertAdjacentHTML(
+        'beforeend',
+        ` <li class="right chat">
+                <div class="details flex flex-ai-c flex-jc-sb">
+                  <a href="" class="username">${data.user}</a>
+                  <small class="timestamp">0 minute ago</small>
+                </div>
+                <p class="body">${data.message}</p>
+              </li>`
+      );
+    } else {
+      document.getElementById('RoomChatBoxChat').insertAdjacentHTML(
+        'beforeend',
+        ` <li class="left chat">
+                <div class="details flex flex-ai-c flex-jc-sb">
+                  <a href="" class="username">${data.user}</a>
+                  <small class="timestamp">0 minute ago</small>
+                </div>
+                <p class="body">${data.message}</p>
+              </li>`
+      );
+    }
+    document.getElementById('RoomChatBox').scrollTop =
+      document.getElementById('RoomChatBox').scrollHeight;
+  };
+
+  chatSocket.onclose = (e) => {
+    console.error('Websocket closed unexpectedly');
+  };
+
+  document.getElementById('RoomChatBox').scrollTop =
+    document.getElementById('RoomChatBox').scrollHeight;
+  document.getElementById('ChatInput').focus();
+  document.getElementById('ChatInput').onkeyup = (e) => {
+    if (e.keyCode === 13) {
+      document.getElementById('ChatInputSubmit').click();
+    }
+  };
+
+  document.getElementById('ChatInputSubmit').addEventListener('click', () => {
+    const message = document.getElementById('ChatInput').value;
+    chatSocket.send(
+      JSON.stringify({
+        message: message,
+      })
+    );
+
+    document.getElementById('ChatInput').value = '';
+  });
+</script>
+
+{% endblock %}

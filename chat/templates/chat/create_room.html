@@ -1,0 +1,75 @@
+{% extends 'main.html' %}{% load static %}{% block content %}
+<main id="CreateRoom" class="create_room wrapper">
+  <div class="create_room__grid w-100">
+    <!-- side bar -->
+
+    {% include 'sidebar.html' %}
+    <!-- side bar end -->
+    <!-- settings  -->
+
+    <section class="create_room_content">
+      <div class="create_room_header">
+        <a href=""
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-arrow-left"
+          >
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </a>
+        <span>Create Room</span>
+      </div>
+      <form action="" class="create_room_form" enctype="multipart/form-data" method="post">
+        <div class="img" id="Preview_image">
+          <img src="/static/assets/images/default.jpg" alt="" id="room_preview_image" />
+        </div>
+        <input type="file" onchange="previewImage(event)" required name="avatar" />
+        <input type="text" placeholder="Room Name" required name="room_name" />
+        <input
+          type="text"
+          placeholder="Category"
+          list="room_category"
+          required
+          name="room_category"
+        />
+        <datalist id="room_category">
+          <select name="">
+            {% for categ in room_categories %}
+            <option value="{{categ.name}}">{{categ.name}}</option>
+            {% endfor %}
+          </select>
+        </datalist>
+        <div class="flex flex-ai-c w-100 flex-jc-s gp-12">
+          <label for="" style="display: block">Is Private </label>
+          <input type="checkbox" name="is_private" style="width: 12px; height: 12px" />
+        </div>
+        <button type="submit">Create Room</button>
+      </form>
+    </section>
+
+    <!-- settings end -->
+    <!-- rightSidebar  -->
+    {% include 'activitybar.html' %}
+    <!-- rightSidebar end -->
+  </div>
+</main>
+
+<script>
+  const previewImage = (event) => {
+    if (event.target.files.length > 0) {
+      let src = URL.createObjectURL(event.target.files[0]);
+      let preview = document.getElementById('room_preview_image');
+      preview.src = src;
+    }
+  };
+</script>
+{% endblock %}

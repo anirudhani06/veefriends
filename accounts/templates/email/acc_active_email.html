@@ -1,0 +1,4 @@
+{% autoescape off %}
+Hi {{user.name}},
+Please verify your email, {{protocol}}://{{domain}}{% url 'validate_user' uidb64=uidb64 token=token %}
+{% endautoescape %}

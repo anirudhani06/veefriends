@@ -1,0 +1,280 @@
+@use '../utils' as *;
+@use '../animations' as *;
+@use '../mixins' as *;
+
+#Profile {
+  .profile {
+    &__grid {
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 2.4fr 1.2fr;
+      &-profile {
+        height: 100%;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        .profile_header {
+          display: flex;
+          align-items: center;
+          justify-content: start;
+          padding-bottom: rem(12);
+          a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: rem(16);
+            svg {
+              width: rem(26);
+              height: rem(26);
+              stroke: $ColorLight;
+            }
+          }
+          span {
+            font-size: $f-lr;
+            color: $ColorMain;
+          }
+          p {
+            margin: 0;
+            color: $ColorGray;
+          }
+        }
+        .cover_pic {
+          height: rem(320);
+          background-color: $ColorSecondary;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        .profile_pic {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 rem(32);
+          margin-top: rem(-90);
+          z-index: 10;
+          .img {
+            width: rem(160);
+            height: rem(160);
+            border-radius: 50%;
+            overflow: hidden;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+          .edit-profile {
+            align-self: last baseline;
+            margin-bottom: rem(32);
+            a {
+              background-color: $ColorMain;
+              color: $ColorLight;
+              padding: rem(8) rem(26);
+              border-radius: rem(22);
+            }
+          }
+        }
+        .profile_details {
+          padding: rem(12) rem(32);
+          .name {
+            font-size: $f-lr;
+          }
+          .username {
+            color: $ColorGray;
+          }
+          .bio {
+            margin-top: rem(12);
+            font-size: $f-sm;
+          }
+          .friends {
+            p {
+              margin: 0;
+              color: $ColorGray;
+              span {
+                color: $ColorLight;
+              }
+            }
+          }
+        }
+        .posts {
+          .title {
+            padding: rem(16) rem(32);
+            border-bottom: 1px solid $ColorGray;
+            span {
+              font-size: $f-exmd;
+            }
+          }
+          .all_posts {
+            .feed {
+              position: relative;
+              padding: rem(12) rem(32);
+              border-bottom: 1px solid $ColorGray;
+              display: grid;
+              grid-template-columns: 1fr 12fr;
+              gap: rem(12);
+
+              .user-img {
+                position: relative;
+                width: rem(42);
+                height: rem(42);
+                img {
+                  border-radius: 50%;
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+              .post {
+                position: relative;
+                .name {
+                  font-size: $f-md;
+                  color: $ColorLight;
+                  &:hover {
+                    text-decoration: underline;
+                  }
+                }
+                .username,
+                .timestamp {
+                  color: $ColorGray;
+                }
+                .options {
+                  position: relative;
+                  button {
+                    background: transparent;
+                    border: none;
+                    outline: transparent;
+                    cursor: pointer;
+                    color: $ColorLight;
+                    font-size: $f-xl;
+                  }
+                  .drop-down {
+                    position: absolute;
+                    right: rem(24);
+                    top: rem(60);
+                    background-color: $ColorSecondary;
+                    padding: rem(32);
+                    border-radius: rem(6);
+                    animation: fade-out 300ms forwards;
+                    &.active {
+                      animation: fade-in 300ms forwards;
+                    }
+                    li {
+                      &:not(:last-child) {
+                        margin-bottom: rem(12);
+                      }
+                      a {
+                        color: $ColorLight;
+                      }
+                    }
+                  }
+                }
+
+                .body {
+                  .text {
+                    margin: 0;
+                    color: $ColorLight;
+                    margin-bottom: rem(12);
+                  }
+                  .img {
+                    display: grid;
+                    grid-template-columns: auto;
+                    grid-template-rows: auto;
+                    border-radius: rem(8);
+                    overflow: hidden;
+                    img {
+                      width: 100%;
+                      height: 100%;
+                      object-fit: cover;
+                    }
+                  }
+                }
+                .footer {
+                  padding-top: rem(12);
+                  button {
+                    gap: rem(6);
+                    cursor: pointer;
+                    border: none;
+                    outline: transparent;
+                    background: transparent;
+                    &:hover {
+                      &.comment {
+                        svg {
+                          stroke: blue;
+                        }
+                        span {
+                          color: blue;
+                        }
+                      }
+                      &.likes {
+                        svg {
+                          stroke: lime;
+                        }
+                        span {
+                          color: lime;
+                        }
+                      }
+                      &.interactions {
+                        svg {
+                          stroke: rgb(241, 98, 98);
+                        }
+                        span {
+                          color: rgb(241, 98, 98);
+                        }
+                      }
+                      &.bookmark {
+                        svg {
+                          stroke: rebeccapurple;
+                        }
+                        span {
+                          color: rebeccapurple;
+                        }
+                      }
+                      &.share {
+                        svg {
+                          stroke: pink;
+                        }
+                        span {
+                          color: pink;
+                        }
+                      }
+                    }
+                    &.likes.added {
+                      svg {
+                        stroke: lime;
+                        fill: lime;
+                      }
+                      span {
+                        color: lime;
+                      }
+                    }
+                    &.bookmark.added {
+                      svg {
+                        stroke: rebeccapurple;
+                        fill: rebeccapurple;
+                      }
+                      span {
+                        color: rebeccapurple;
+                      }
+                    }
+                    svg {
+                      stroke: $ColorGray;
+                      width: rem(18);
+                      height: rem(18);
+                      transition: 300ms ease-in-out;
+                    }
+                    span {
+                      color: $ColorGray;
+                      transition: 300ms ease-in-out;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

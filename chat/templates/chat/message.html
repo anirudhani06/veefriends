@@ -1,0 +1,125 @@
+{% extends 'main.html' %}{% load static %}{% block content %}
+<main id="Chat" class="chat wrapper">
+  <div class="chat__grid w-100">
+    <!-- sidebar  -->
+    {% include 'sidebar.html' %}
+    <!-- sidebar end -->
+    <div class="chat__grid-feed">
+      <div class="chat__grid-feed-header flex flex-ai-c flex-jc-sb">
+        <div class="flex flex-ai-c flex-jc-s gp-12">
+          <a href="">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-arrow-left"
+            >
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+          </a>
+          <div class="chat_details">
+            <button class="active">{{user.username}}</button>
+          </div>
+        </div>
+      </div>
+      <section class="chat_room_content">
+        <div id="RoomChatBox">
+          <ul id="RoomChatBoxChat">
+            {% for msg in messages %} {% if msg.user == request.user.profile %}
+            <li class="right chat">
+              <div class="details flex flex-ai-c flex-jc-sb">
+                <a href="{{ms.user.get_absolute_url}}" class="username">You</a>
+                <small class="timestamp">{{msg.created_at|timesince}} ago</small>
+              </div>
+              <p class="body">{{msg.message}}</p>
+            </li>
+            {% else %}
+            <li class="left chat">
+              <div class="details flex flex-ai-c flex-jc-sb">
+                <a href="{{ms.user.get_absolute_url}}" class="username">{{msg.user.username}}</a>
+                <small class="timestamp">{{msg.created_at|timesince}} ago</small>
+              </div>
+              <p class="body">{{msg.message}}</p>
+            </li>
+            {% endif %} {% endfor %}
+          </ul>
+        </div>
+        <input type="text" placeholder="Write something" id="ChatInput" />
+        <input type="hidden" id="ChatInputSubmit" />
+      </section>
+    </div>
+    <!-- rightSidebar  -->
+    {% include 'activitybar.html' %}
+    <!-- rightSidebar end -->
+  </div>
+</main>
+
+<script>
+  document.getElementById('RoomChatBox').scrollTop =
+    document.getElementById('RoomChatBox').scrollHeight;
+
+  const receiverUsername = '{{user.username}}';
+
+  let url = `ws://${window.location.host}/ws/message/${receiverUsername}/`;
+  const chatSocket = new WebSocket(url);
+
+  chatSocket.onmessage = (e) => {
+    data = JSON.parse(e.data);
+    if (data.user === receiverUsername) {
+      document.getElementById('RoomChatBoxChat').insertAdjacentHTML(
+        'beforeend',
+        ` <li class="left chat">
+              <div class="details flex flex-ai-c flex-jc-sb">
+                <a href="${data.url}" class="username">${data.user}</a>
+                <small class="timestamp">0 min ago</small>
+              </div>
+              <p class="body">
+                ${data.message}
+              </p>
+            </li>`
+      );
+    } else {
+      document.getElementById('RoomChatBoxChat').insertAdjacentHTML(
+        'beforeend',
+        ` <li class="right chat">
+              <div class="details flex flex-ai-c flex-jc-sb">
+                <a href="${data.url}" class="username">You</a>
+                <small class="timestamp">0 min ago</small>
+              </div>
+              <p class="body">
+                ${data.message}
+              </p>
+            </li>`
+      );
+    }
+  };
+
+  chatSocket.onclose = (e) => {
+    console.log('Socket closed');
+  };
+
+  document.getElementById('ChatInput').focus();
+  document.getElementById('ChatInput').onkeydown = (e) => {
+    if (e.keyCode == 13) {
+      document.getElementById('ChatInputSubmit').click();
+    }
+  };
+
+  document.getElementById('ChatInputSubmit').addEventListener('click', () => {
+    const message = document.getElementById('ChatInput').value;
+    chatSocket.send(
+      JSON.stringify({
+        message: message,
+      })
+    );
+    document.getElementById('ChatInput').value = '';
+  });
+</script>
+{% endblock %}

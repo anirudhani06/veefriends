@@ -1,0 +1,94 @@
+@use '../utils' as *;
+@use '../animations' as *;
+
+#CreatePost {
+  .create_post {
+    &__grid {
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 2.4fr 1.2fr;
+      .create_post_content {
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        .create_post_header {
+          position: sticky;
+          top: 0;
+          z-index: 10;
+          background-color: $ColorPrimary;
+          padding: rem(32);
+          padding-bottom: rem(12);
+          display: flex;
+          align-items: center;
+          justify-content: start;
+          gap: rem(12);
+          border-bottom: 1px solid $ColorGray;
+          a {
+            svg {
+              width: rem(26);
+              height: rem(26);
+              stroke: $ColorLight;
+            }
+          }
+          span {
+            font-size: $f-lr;
+          }
+        }
+        .create_post_form {
+          padding: rem(32);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          input {
+            width: 100%;
+            padding: rem(12);
+            background-color: $ColorSecondary;
+            color: $ColorLight;
+            outline: transparent;
+            border: none;
+            border-bottom: 1px solid $ColorMain;
+            &:not(:last-child) {
+              margin-bottom: rem(16);
+            }
+          }
+          textarea {
+            padding: rem(12);
+            width: 100%;
+            height: rem(100);
+            background-color: $ColorSecondary;
+            color: $ColorLight;
+            outline: transparent;
+            border: none;
+            border-bottom: 1px solid $ColorMain;
+          }
+          .img {
+            margin-top: rem(12);
+            width: 100%;
+            height: rem(360);
+            border-radius: rem(8);
+            overflow: hidden;
+            margin-bottom: rem(16);
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+          button {
+            margin-top: rem(12);
+            width: 100%;
+            border: none;
+            outline: transparent;
+            background-color: $ColorMain;
+            color: $ColorLight;
+            padding: rem(12);
+            border-radius: rem(8);
+          }
+        }
+      }
+    }
+  }
+}

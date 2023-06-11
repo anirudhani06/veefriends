@@ -1,0 +1,29 @@
+@use './functions.scss' as *;
+
+$breakpoint-up: (
+  'sm': em(576),
+  'md': em(768),
+  'lr': em(992),
+  'xl': em(1200),
+  'xxl': em(1400),
+);
+
+$breakpoint-down: (
+  'xsm': em(575),
+  'sm': em(767),
+  'md': em(991),
+  'lr': em(1199),
+  'xl': em(1399),
+);
+
+@mixin breakpoint-up($size) {
+  @media (min-width: map-get($breakpoint-up,$size)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-down($size) {
+  @media (max-width: map-get($breakpoint-down,$size)) {
+    @content;
+  }
+}

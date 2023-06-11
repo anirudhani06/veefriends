@@ -1,0 +1,39 @@
+{% extends 'main.html' %}{% load static %} {% block content %}
+<main id="Following" class="following wrapper">
+  <div class="following__grid w-100">
+    <!-- side bar  -->
+    {% include 'sidebar.html' %}
+    <!-- side bar end -->
+    <!-- following feed  -->
+    <section class="following__grid__following">
+      <div class="following_header">
+        <button type="button">Followings ({{followings.count}})</button>
+      </div>
+      <ul class="all_followings">
+        {% if followings.count == 0 %}
+        <div style="text-align: center; font-size: 22px; padding: 12px">No followings</div>
+        {% else %} {% for following in followings %}
+        <li class="flex flex-ai-c flex-jc-sb">
+          <div class="flex flex-ai-c flex-jc-s gp-12">
+            <a href="{% url 'profile' following.id %}" class="user-img">
+              <img src="{{following.avatar.url}}" alt="" />
+            </a>
+            <div>
+              <a href="{% url 'profile' following.id %}" class="name">{{following.name}}</a>
+              <a href="{% url 'profile' following.id %}" class="username"
+                >@{{following.username}}</a
+              >
+            </div>
+          </div>
+          <a href="{% url 'follow' following.id %}" class="follow_btn">Unfollow</a>
+        </li>
+        {% endfor %} {% endif %}
+      </ul>
+    </section>
+    <!-- following feed end -->
+    <!-- rightSidebar  -->
+    {% include 'activitybar.html' %}
+    <!-- rightSidebar end -->
+  </div>
+</main>
+{% endblock %}

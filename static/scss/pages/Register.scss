@@ -1,0 +1,137 @@
+@use '../utils' as *;
+
+.signup {
+  width: 100%;
+  height: 100vh;
+  background: $ColorSecondary;
+  @include breakpoint-down(md) {
+    padding: rem(0) rem(12);
+  }
+
+  &__form {
+    position: relative;
+    background: $ColorDark;
+    border-radius: rem(4);
+    max-width: rem(500);
+    box-shadow: 0 0 10px #00000041;
+    display: grid;
+    overflow: hidden;
+    padding: rem(32);
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+
+    .title {
+      padding-bottom: rem(16);
+      text-align: center;
+      h2 {
+        font-size: $f-lr;
+        color: $ColorLight;
+        margin-bottom: rem(6);
+      }
+      span {
+        color: $ColorGray;
+        font-weight: normal;
+      }
+    }
+
+    form {
+      .form-control {
+        position: relative;
+        &:not(:last-child) {
+          margin-bottom: rem(12);
+        }
+        input {
+          display: block;
+          width: 100%;
+          padding: rem(12) rem(12);
+          border-radius: rem(4);
+          border: 1px solid $ColorGray;
+          outline: transparent;
+          color: $ColorGray;
+        }
+        .eye {
+          position: absolute;
+          right: rem(8);
+          top: 50%;
+          transform: translateY(-50%);
+          cursor: pointer;
+          svg {
+            stroke: $ColorMain;
+          }
+          .feather.active {
+            display: block;
+          }
+          .feather {
+            display: none;
+          }
+        }
+      }
+      .error {
+        margin-bottom: rem(6);
+        span {
+          color: $ColorError;
+          letter-spacing: rem(1);
+          font-weight: 100;
+        }
+      }
+      .submit-btn {
+        width: 100%;
+        padding: rem(12);
+        outline: transparent;
+        background: $ColorMain;
+        color: $ColorLight;
+        border-radius: rem(4);
+        border: 1px solid $ColorMain;
+        cursor: pointer;
+        transition: 300ms;
+        font-size: $f-md;
+        &:hover {
+          border: 1px solid $ColorMain;
+          background: $ColorDark;
+          color: $ColorMain;
+        }
+      }
+    }
+    .google-login {
+      text-align: center;
+      a {
+        display: block;
+        background: $ColorMain;
+        margin: rem(8) 0;
+        padding: rem(12);
+        border-radius: rem(4);
+        transition: 300ms ease-in-out;
+        border: 1px solid $ColorMain;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:hover {
+          background: $ColorDark;
+          span {
+            color: $ColorMain;
+          }
+        }
+        img {
+          width: rem(18);
+          height: rem(18);
+          margin-right: rem(6);
+        }
+        span {
+          color: $ColorLight;
+          transition: 300ms ease-in-out;
+        }
+      }
+    }
+    .signin-link {
+      margin-top: rem(24);
+      span {
+        color: $ColorLight;
+        a {
+          color: $ColorMain;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

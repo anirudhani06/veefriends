@@ -1,0 +1,58 @@
+{% extends 'main.html' %}{% load static %}{% block content %}
+<main id="CreatePost" class="create_post wrapper">
+  <div class="create_post__grid w-100">
+    <!-- side bar -->
+
+    {% include 'sidebar.html' %}
+    <!-- side bar end -->
+    <!-- settings  -->
+
+    <section class="create_post_content">
+      <div class="create_post_header">
+        <a href="{{request.META.HTTP_REFERER}}"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-arrow-left"
+          >
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </a>
+        <span>Update Post</span>
+      </div>
+      <form action="" class="create_post_form" method="post" enctype="multipart/form-data">
+        <input type="file" onchange="previewImage(event)" required name="image" />
+
+        <textarea name="body" id="" cols="30" rows="10" required>{{post.body}}</textarea>
+        <div class="img" id="image">
+          <img src="{{post.image.url}}" alt="" id="post_preview_image" />
+        </div>
+        <button type="submit">Update</button>
+      </form>
+    </section>
+
+    <!-- settings end -->
+    <!-- rightSidebar  -->
+    {% include 'activitybar.html' %}
+    <!-- rightSidebar end -->
+  </div>
+</main>
+
+<script>
+  const previewImage = (event) => {
+    if (event.target.files.length > 0) {
+      let src = URL.createObjectURL(event.target.files[0]);
+      let preview = document.getElementById('post_preview_image');
+      preview.src = src;
+    }
+  };
+</script>
+{% endblock %}

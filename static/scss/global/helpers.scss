@@ -1,0 +1,97 @@
+@use '../utils' as *;
+
+.wrapper {
+  max-width: rem(1200);
+  margin: 0 auto;
+  @include breakpoint-down(lr) {
+    padding-left: rem(16);
+    padding-right: rem(16);
+  }
+}
+
+.flex {
+  display: flex;
+  &-jc-c {
+    justify-content: center;
+  }
+  &-jc-s {
+    justify-content: start;
+  }
+  &-jc-e {
+    justify-content: end;
+  }
+  &-jc-sb {
+    justify-content: space-between;
+  }
+  &-jc-sa {
+    justify-content: space-around;
+  }
+  &-jc-se {
+    justify-content: space-evenly;
+  }
+  &-ai-c {
+    align-items: center;
+  }
+  &-ai-s {
+    align-items: start;
+  }
+  &-ai-e {
+    align-items: end;
+  }
+}
+
+.w-100 {
+  width: 100%;
+}
+.w-75 {
+  width: 75%;
+}
+.w-50 {
+  width: 50%;
+}
+.w-25 {
+  width: 25%;
+}
+
+.gp-8 {
+  gap: rem(8);
+}
+.gp-12 {
+  gap: rem(12);
+}
+.gp-16 {
+  gap: rem(16);
+}
+
+.p-32 {
+  padding: rem(32);
+}
+.py-32 {
+  padding-top: rem(32);
+  padding-bottom: rem(32);
+}
+.pt-32 {
+  padding-top: rem(32);
+}
+.pb-32 {
+  padding-bottom: rem(32);
+}
+.p-12 {
+  padding: rem(12);
+}
+.py-12 {
+  padding-top: rem(12);
+  padding-bottom: rem(12);
+}
+.pt-12 {
+  padding-top: rem(12);
+}
+.pb-12 {
+  padding-bottom: rem(12);
+}
+
+svg {
+  width: rem(18);
+  height: rem(18);
+  stroke-width: rem(1);
+}

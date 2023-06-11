@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <title>VeeFriends</title>
+  </head>
+  <body>
+    {% block content %} {% endblock %}
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+
+    <script>
+      const username = '{{request.user.username}}';
+      let url = `ws://${window.location.host}/ws/activity/${username}/`;
+      const activitySocket = new WebSocket(url);
+
+      activitySocket.onmessage = (e) => {
+        data = JSON.parse(e.data);
+
+        document.getElementById('ActivityBar').insertAdjacentHTML(
+          'beforeend',
+          `<li>
+          <a href="${data.post}">
+            <div class="user-img">
+              <img src="${data.user_img}" alt="" />
+            </div>
+            <div class="name"><span>${data.user}</span></div>
+            <span class="body accept">${data.message}</span>
+          </a>
+      </li>`
+        );
+      };
+    </script>
+  </body>
+</html>

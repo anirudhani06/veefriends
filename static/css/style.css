@@ -1,0 +1,3064 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: "poppins", sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.add_post_card {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #000000;
+  padding: 1.125rem;
+  width: 34.375rem;
+  z-index: 1000;
+  border-radius: 0.5rem;
+  animation: fade-out 300ms forwards;
+}
+.add_post_card.active {
+  animation: fade-in 300ms forwards;
+}
+.add_post_card .close_post-card {
+  margin-bottom: 0.75rem;
+}
+.add_post_card .close_post-card svg {
+  stroke: #fff;
+  width: 1.75rem;
+  height: 1.75rem;
+  cursor: pointer;
+}
+.add_post_card form .main-area {
+  display: grid;
+  grid-template-columns: 1fr 11fr;
+}
+.add_post_card form .main-area .user-img {
+  width: 2.625rem;
+  height: 2.625rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.add_post_card form .main-area .user-img img {
+  width: 100%;
+  height: 100%;
+}
+.add_post_card form .main-area textarea {
+  background: transparent;
+  width: 100%;
+  border: none;
+  color: #fff;
+  outline: transparent;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+.add_post_card form .main-area #IMAGE {
+  display: none;
+}
+.add_post_card form .main-area img {
+  aspect-ratio: 3/2;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  width: 100%;
+}
+.add_post_card form .footer {
+  margin-top: 0.75rem;
+  border-top: 1px solid #1c1c1c;
+  padding-top: 0.75rem;
+}
+.add_post_card form .footer svg {
+  width: 1.375rem;
+  height: 1.375rem;
+  cursor: pointer;
+  align-self: baseline;
+}
+.add_post_card form .footer .submit_btn {
+  padding: 0.75rem 2.625rem;
+  background-color: #1d9797;
+  color: #fff;
+  font-size: 0.875rem;
+  border-radius: 1.375rem;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+#create_group_card {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #000000;
+  padding: 1.125rem;
+  width: 34.375rem;
+  z-index: 1000;
+  border-radius: 0.5rem;
+  animation: fade-out 300ms forwards;
+}
+#create_group_card.active {
+  animation: fade-in 300ms forwards;
+}
+#create_group_card .close_group-card svg {
+  stroke: #fff;
+  width: 1.75rem;
+  height: 1.75rem;
+  cursor: pointer;
+}
+#create_group_card form .img {
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#create_group_card form .img img {
+  width: 100%;
+  height: 100%;
+}
+#create_group_card form .form-control {
+  padding: 0.75rem 0;
+}
+#create_group_card form .form-control input {
+  width: 100%;
+}
+#create_group_card form .form-control input.name {
+  border: 1px solid #1d9797;
+  padding: 0.75rem;
+  background: transparent;
+  border-radius: 1.125rem;
+  outline: transparent;
+  color: #fff;
+}
+#create_group_card form .group_btn {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 1.125rem;
+  border: none;
+  outline: transparent;
+  color: #fff;
+  background: #1d9797;
+  font-size: 1rem;
+}
+
+.body_overlay {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  background-color: rgba(16, 103, 128, 0.464);
+  z-index: 99;
+  animation: fade-out 300ms forwards;
+}
+.body_overlay.active {
+  animation: fade-in 300ms forwards;
+}
+
+.wrapper {
+  max-width: 75rem;
+  margin: 0 auto;
+}
+@media (max-width: 74.9375em) {
+  .wrapper {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.flex {
+  display: flex;
+}
+.flex-jc-c {
+  justify-content: center;
+}
+.flex-jc-s {
+  justify-content: start;
+}
+.flex-jc-e {
+  justify-content: end;
+}
+.flex-jc-sb {
+  justify-content: space-between;
+}
+.flex-jc-sa {
+  justify-content: space-around;
+}
+.flex-jc-se {
+  justify-content: space-evenly;
+}
+.flex-ai-c {
+  align-items: center;
+}
+.flex-ai-s {
+  align-items: start;
+}
+.flex-ai-e {
+  align-items: end;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.w-75 {
+  width: 75%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.w-25 {
+  width: 25%;
+}
+
+.gp-8 {
+  gap: 0.5rem;
+}
+
+.gp-12 {
+  gap: 0.75rem;
+}
+
+.gp-16 {
+  gap: 1rem;
+}
+
+.p-32 {
+  padding: 2rem;
+}
+
+.py-32 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.pt-32 {
+  padding-top: 2rem;
+}
+
+.pb-32 {
+  padding-bottom: 2rem;
+}
+
+.p-12 {
+  padding: 0.75rem;
+}
+
+.py-12 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.pt-12 {
+  padding-top: 0.75rem;
+}
+
+.pb-12 {
+  padding-bottom: 0.75rem;
+}
+
+svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  stroke-width: 0.0625rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+}
+
+p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: clamp(1.375rem, 21vw, 2rem);
+}
+
+h2 {
+  font-size: clamp(1.125rem, 18vw, 1.75rem);
+}
+
+h3 {
+  font-size: clamp(1rem, 15vw, 1.5rem);
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a,
+a:active,
+a:visited {
+  text-decoration: none;
+}
+
+.sidebar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  border-right: 1px solid #777575;
+}
+.sidebar__logo {
+  margin-bottom: 2rem;
+}
+.sidebar__logo a h1 {
+  color: #1d9797;
+  margin: 0;
+}
+.sidebar__links li.link {
+  position: relative;
+}
+.sidebar__links li.link:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+.sidebar__links li.link.active a svg {
+  stroke-width: 0.125rem;
+}
+.sidebar__links li.link.active a span {
+  font-weight: 500;
+}
+.sidebar__links li.link a {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.75rem;
+}
+.sidebar__links li.link a svg {
+  stroke: #fff;
+  stroke-width: 0.0625rem;
+  width: 1.375rem;
+  height: 1.375rem;
+}
+.sidebar__links li.link a span {
+  color: #fff;
+  font-size: 1.125rem;
+}
+.sidebar__links li.link a span.notification {
+  position: absolute;
+  top: -0.125rem;
+  left: -0.125rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #f1470e;
+}
+.sidebar__post-btn a {
+  display: block;
+  padding: 0.75rem 3.75rem;
+  letter-spacing: 1px;
+  background-color: #1d9797;
+  color: #fff;
+  border-radius: 1.375rem;
+  transition: all 300ms ease-in-out;
+  font-size: 1rem;
+}
+.sidebar__post-btn a:hover {
+  opacity: 0.8;
+}
+.sidebar__user {
+  position: relative;
+  cursor: pointer;
+  background: transparent;
+}
+.sidebar__user .user-img {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.sidebar__user .user-img img {
+  width: 100%;
+  height: 100%;
+}
+.sidebar__user .name {
+  margin-left: 0.75rem;
+  color: #fff;
+}
+.sidebar__user .username {
+  margin-left: 0.75rem;
+  color: #777575;
+}
+
+.rightSidebar {
+  border-left: 1px solid #777575;
+  padding-left: 2rem;
+}
+.rightSidebar__search form .form-control {
+  background: #262626;
+  padding: 0.875rem 1rem;
+  border-radius: 1.375rem;
+}
+.rightSidebar__search form .form-control svg {
+  stroke: #1d9797;
+}
+.rightSidebar__search form .form-control input {
+  width: 100%;
+  border: none;
+  outline: transparent;
+  color: #fff;
+  background: transparent;
+}
+.rightSidebar__activity {
+  background-color: #1c1c1c;
+  margin-top: 2rem;
+  border-radius: 0.5rem;
+}
+.rightSidebar__activity .title {
+  padding: 0.75rem;
+  border-bottom: 1px solid #777575;
+}
+.rightSidebar__activity .title span {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+.rightSidebar__activity ul {
+  overflow-y: scroll;
+  height: 60vh;
+}
+.rightSidebar__activity ul::-webkit-scrollbar {
+  display: none;
+}
+.rightSidebar__activity ul li {
+  padding: 0.75rem;
+  transition: all 300ms ease-in-out;
+}
+.rightSidebar__activity ul li:hover {
+  background-color: #000000;
+}
+.rightSidebar__activity ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.5rem;
+}
+.rightSidebar__activity ul li a .user-img {
+  width: 1.625rem;
+  height: 1.625rem;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.rightSidebar__activity ul li a .user-img img {
+  width: 100%;
+  height: 100%;
+}
+.rightSidebar__activity ul li a .name span {
+  color: #fff;
+}
+.rightSidebar__activity ul li a .body {
+  font-size: 0.75rem;
+  color: #f1470e;
+}
+.rightSidebar__activity ul li a .body.accept {
+  color: #21eb82;
+}
+.rightSidebar__logout_btn {
+  padding: 0.75rem 0;
+}
+.rightSidebar__logout_btn a {
+  color: #1d9797;
+  text-decoration: underline;
+}
+
+button {
+  outline: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+#Home {
+  height: 100vh;
+}
+#Home .home__grid {
+  display: grid;
+  grid-template-columns: 1fr 2.4fr 1.2fr;
+}
+#Home .home__grid-feed {
+  height: 100vh;
+  overflow-y: scroll;
+}
+#Home .home__grid-feed::-webkit-scrollbar {
+  display: none;
+}
+#Home .home__grid-feed-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 2rem;
+  padding-bottom: 0.75rem;
+  background-color: #000000;
+  border-bottom: 1px solid #777575;
+}
+#Home .home__grid-feed-header button {
+  background: transparent;
+  outline: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0;
+}
+#Home .home__grid-feed-header button.active {
+  color: #1d9797;
+}
+#Home .home__grid-feed .home_content {
+  display: none;
+}
+#Home .home__grid-feed .home_content.active {
+  display: block;
+}
+#Home .home__grid-feed .home_content .feed-section .empty_feed {
+  text-align: center;
+  padding-top: 0.75rem;
+}
+#Home .home__grid-feed .home_content .feed-section .empty_feed p {
+  font-size: 1.375rem;
+}
+#Home .home__grid-feed .home_content .feed-section .feed {
+  position: relative;
+  padding: 0.75rem 2rem;
+  border-bottom: 1px solid #777575;
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  gap: 0.75rem;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .user-img {
+  position: relative;
+  width: 2.625rem;
+  height: 2.625rem;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .user-img img {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .user-img .is-online {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #21eb82;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .user-img .is-offline {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #777575;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .name {
+  font-size: 1rem;
+  color: #fff;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .name:hover {
+  text-decoration: underline;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .username,
+#Home .home__grid-feed .home_content .feed-section .feed .post .timestamp {
+  color: #777575;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .options {
+  position: relative;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .options button {
+  background: transparent;
+  border: none;
+  outline: transparent;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.625rem;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .options .drop-down {
+  position: absolute;
+  right: 1.5rem;
+  top: 3.75rem;
+  background-color: #1c1c1c;
+  padding: 2rem;
+  border-radius: 0.375rem;
+  animation: fade-out 300ms forwards;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .options .drop-down.active {
+  animation: fade-in 300ms forwards;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .options .drop-down li:not(:last-child) {
+  margin-bottom: 1rem;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .options .drop-down li a {
+  color: #fff;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .options .drop-down li a.del {
+  color: #f1470e;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .body {
+  width: 100%;
+  display: block;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .body .text {
+  margin: 0;
+  color: #fff;
+  margin-bottom: 0.75rem;
+  letter-spacing: 1px;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .body .img {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .body .img img {
+  justify-self: center;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .footer {
+  padding-top: 0.75rem;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .footer button {
+  cursor: pointer;
+  border: none;
+  outline: transparent;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .footer button:hover.comment svg {
+  stroke: rgb(14, 14, 192);
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .footer button:hover.comment span {
+  color: rgb(14, 14, 192);
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .footer button:hover.likes svg {
+  stroke: lime;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .footer button:hover.likes span {
+  color: lime;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .footer button:hover.interactions svg {
+  stroke: rgb(241, 98, 98);
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .footer button:hover.interactions span {
+  color: rgb(241, 98, 98);
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .footer button:hover.bookmark svg {
+  stroke: rebeccapurple;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .footer button:hover.bookmark span {
+  color: rebeccapurple;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .footer button:hover.share svg {
+  stroke: pink;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .footer button:hover.share span {
+  color: pink;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .footer button.likes.added svg {
+  stroke: lime;
+  fill: lime;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .footer button.likes.added span {
+  color: lime;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .footer button.bookmark.added svg {
+  stroke: rebeccapurple;
+  fill: rebeccapurple;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .footer button.bookmark.added span {
+  color: rebeccapurple;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .footer button svg {
+  stroke: #777575;
+  width: 1.125rem;
+  height: 1.125rem;
+  transition: all 300ms ease-in-out;
+}
+#Home .home__grid-feed .home_content .feed-section .feed .post .footer button span {
+  color: #777575;
+  transition: all 300ms ease-in-out;
+}
+#Home .home__grid-feed .home_messages {
+  display: none;
+}
+#Home .home__grid-feed .home_messages.active {
+  display: block;
+}
+#Home .home__grid-feed .home_messages .chats li {
+  position: relative;
+  padding: 0.75rem 2rem;
+}
+#Home .home__grid-feed .home_messages .chats li.empty_messages {
+  text-align: center;
+}
+#Home .home__grid-feed .home_messages .chats li.empty_messages p {
+  font-size: 1.375rem;
+}
+#Home .home__grid-feed .home_messages .chats li.not_read p.message {
+  color: #1d9797;
+}
+#Home .home__grid-feed .home_messages .chats li .user-img {
+  position: relative;
+  width: 2.625rem;
+  height: 2.625rem;
+  overflow: hidden;
+}
+#Home .home__grid-feed .home_messages .chats li .user-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+#Home .home__grid-feed .home_messages .chats li .user-img .is-online {
+  position: absolute;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #21eb82;
+  right: 0.125rem;
+  bottom: 0.125rem;
+  border-radius: 50%;
+}
+#Home .home__grid-feed .home_messages .chats li .user-img .is-offline {
+  position: absolute;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #777575;
+  right: 0.125rem;
+  bottom: 0.125rem;
+  border-radius: 50%;
+}
+#Home .home__grid-feed .home_messages .chats li .name {
+  display: block;
+  color: #fff;
+}
+#Home .home__grid-feed .home_messages .chats li p.message {
+  color: #777575;
+  margin: 0;
+}
+#Home .home__grid-feed .home_messages .chats li .timestamp {
+  color: #777575;
+}
+#Home .home__grid-feed .home_groups {
+  display: none;
+  padding: 0.75rem 2rem;
+}
+#Home .home__grid-feed .home_groups.active {
+  display: block;
+}
+#Home .home__grid-feed .home_groups .group_head h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+#Home .home__grid-feed .home_groups .group_head .create_group a {
+  display: block;
+  padding: 0.75rem 1.375rem;
+  background-color: #1d9797;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 1.375rem;
+}
+#Home .home__grid-feed .home_groups .all_groups {
+  margin-top: 1rem;
+}
+#Home .home__grid-feed .home_groups .all_groups ul li:not(:last-child) {
+  margin-bottom: 1.375rem;
+}
+#Home .home__grid-feed .home_groups .all_groups ul li.empty_room p {
+  font-size: 1.375rem;
+  text-align: center;
+}
+#Home .home__grid-feed .home_groups .all_groups ul li.not_read p.message {
+  color: #1d9797;
+}
+#Home .home__grid-feed .home_groups .all_groups ul li .user-img {
+  width: 2.625rem;
+  height: 2.625rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+#Home .home__grid-feed .home_groups .all_groups ul li .user-img img {
+  width: 100%;
+  height: 100%;
+}
+#Home .home__grid-feed .home_groups .all_groups ul li .group_name {
+  font-size: 1rem;
+  display: block;
+  color: #fff;
+}
+#Home .home__grid-feed .home_groups .all_groups ul li p.message {
+  color: #777575;
+  margin: 0;
+}
+#Home .home__grid-feed .home_groups .all_groups ul li .timestamp {
+  color: #777575;
+}
+
+#SinglePost {
+  height: 100vh;
+}
+#SinglePost .single_post__grid {
+  display: grid;
+  grid-template-columns: 1fr 2.4fr 1.2fr;
+}
+#SinglePost .single_post__grid-post-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 2rem;
+  padding-bottom: 0.75rem;
+  background-color: #000000;
+  border-bottom: 1px solid #777575;
+}
+#SinglePost .single_post__grid-post-header a {
+  color: #fff;
+  font-size: 1.125rem;
+}
+#SinglePost .single_post__grid-post-header a svg {
+  stroke-width: 0.125rem;
+  width: 1.625rem;
+  height: 1.625rem;
+}
+#SinglePost .single_post__grid-post .post_content {
+  height: 89vh;
+  overflow-y: scroll;
+}
+#SinglePost .single_post__grid-post .post_content::-webkit-scrollbar {
+  display: none;
+}
+#SinglePost .single_post__grid-post .post_content .post {
+  position: relative;
+  padding: 0.75rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 12fr;
+  gap: 0.75rem;
+}
+#SinglePost .single_post__grid-post .post_content .post .user-img {
+  position: relative;
+  width: 2.625rem;
+  height: 2.625rem;
+}
+#SinglePost .single_post__grid-post .post_content .post .user-img img {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+#SinglePost .single_post__grid-post .post_content .post .user-img .is-online {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #21eb82;
+}
+#SinglePost .single_post__grid-post .post_content .post .user-img .is-offline {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #777575;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .name {
+  font-size: 1rem;
+  color: #fff;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .name:hover {
+  text-decoration: underline;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .username,
+#SinglePost .single_post__grid-post .post_content .post .content .timestamp {
+  color: #777575;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .options {
+  position: relative;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .options button {
+  background: transparent;
+  border: none;
+  outline: transparent;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.625rem;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .body .text {
+  margin: 0;
+  color: #fff;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.9px;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .body .img {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .body .img img {
+  justify-self: center;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .footer {
+  padding-top: 0.75rem;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .footer button {
+  gap: 0.375rem;
+  cursor: pointer;
+  border: none;
+  outline: transparent;
+  background: transparent;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .footer button:hover.comment svg {
+  stroke: blue;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .footer button:hover.comment span {
+  color: blue;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .footer button:hover.likes svg {
+  stroke: lime;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .footer button:hover.likes span {
+  color: lime;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .footer button:hover.interactions svg {
+  stroke: rgb(241, 98, 98);
+}
+#SinglePost .single_post__grid-post .post_content .post .content .footer button:hover.interactions span {
+  color: rgb(241, 98, 98);
+}
+#SinglePost .single_post__grid-post .post_content .post .content .footer button:hover.bookmark svg {
+  stroke: rebeccapurple;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .footer button:hover.bookmark span {
+  color: rebeccapurple;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .footer button:hover.share svg {
+  stroke: pink;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .footer button:hover.share span {
+  color: pink;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .footer button.likes.added svg {
+  stroke: lime;
+  fill: lime;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .footer button.likes.added span {
+  color: lime;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .footer button.bookmark.added svg {
+  stroke: rebeccapurple;
+  fill: rebeccapurple;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .footer button.bookmark.added span {
+  color: rebeccapurple;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .footer button svg {
+  stroke: #777575;
+  width: 1.125rem;
+  height: 1.125rem;
+  transition: 300ms ease-in-out;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .footer button span {
+  color: #777575;
+  transition: 300ms ease-in-out;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .write_comment {
+  margin-top: 0.75rem;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .write_comment textarea {
+  width: 100%;
+  height: 5rem;
+  background-color: #1c1c1c;
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+  color: #fff;
+  padding: 0.75rem;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .write_comment button {
+  padding: 0.5rem 1.625rem;
+  margin-top: 0.375rem;
+  background-color: #1d9797;
+  color: #fff;
+  border-radius: 1.375rem;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .comments {
+  margin-top: 0.75rem;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .comments .title span {
+  font-size: 1rem;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .comments .comment {
+  margin-top: 1rem;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .comments .comment li:not(:last-child) {
+  margin-bottom: 1.125rem;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .comments .comment li .comment_user {
+  margin-bottom: 0.375rem;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .comments .comment li .comment_user .user-img {
+  width: 1.625rem;
+  height: 1.625rem;
+  overflow: hidden;
+  border-radius: 50%;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .comments .comment li .comment_user .user-img img {
+  width: 100%;
+  height: 100%;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .comments .comment li .comment_user__name a {
+  text-decoration: none;
+  color: #1d9797;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .comments .comment li .comment_user__timestamp span {
+  font-size: 0.75rem;
+  color: #777575;
+}
+#SinglePost .single_post__grid-post .post_content .post .content .comments .comment li .body p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #777575;
+}
+
+#Bookmark {
+  height: 100vh;
+}
+#Bookmark .bookmark__grid {
+  display: grid;
+  grid-template-columns: 1fr 2.4fr 1.2fr;
+}
+#Bookmark .bookmark__grid-feed {
+  height: 100vh;
+  overflow-y: scroll;
+}
+#Bookmark .bookmark__grid-feed-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 2rem;
+  padding-bottom: 0.75rem;
+  background-color: #000000;
+  border-bottom: 1px solid #777575;
+}
+#Bookmark .bookmark__grid-feed-header button {
+  background: transparent;
+  outline: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.125rem;
+  padding: 0.5rem 0;
+}
+#Bookmark .bookmark__grid-feed-header button.active {
+  color: #1d9797;
+  font-weight: 600;
+}
+#Bookmark .bookmark__grid-feed::-webkit-scrollbar {
+  display: none;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed {
+  position: relative;
+  padding: 0.75rem 2rem;
+  border-bottom: 1px solid #777575;
+  display: grid;
+  grid-template-columns: 1fr 12fr;
+  gap: 0.75rem;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .user-img {
+  position: relative;
+  width: 2.625rem;
+  height: 2.625rem;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .user-img img {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .user-img .is-online {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #21eb82;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .user-img .is-offline {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #777575;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post {
+  position: relative;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .name {
+  font-size: 1rem;
+  color: #fff;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .name:hover {
+  text-decoration: underline;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .username,
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .timestamp {
+  color: #777575;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .options {
+  position: relative;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .options button {
+  background: transparent;
+  border: none;
+  outline: transparent;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.625rem;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .options .drop-down {
+  position: absolute;
+  right: 1.5rem;
+  top: 3.75rem;
+  background-color: #1c1c1c;
+  padding: 2rem;
+  border-radius: 0.375rem;
+  animation: fade-out 300ms forwards;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .options .drop-down.active {
+  animation: fade-in 300ms forwards;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .options .drop-down li:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .options .drop-down li a {
+  color: #fff;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .options .drop-down li a.del {
+  color: #f1470e;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .body .text {
+  margin: 0;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .body .img {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .body .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .footer {
+  padding-top: 0.75rem;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .footer button {
+  gap: 0.375rem;
+  cursor: pointer;
+  border: none;
+  outline: transparent;
+  background: transparent;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .footer button:hover.comment svg {
+  stroke: blue;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .footer button:hover.comment span {
+  color: blue;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .footer button:hover.likes svg {
+  stroke: lime;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .footer button:hover.likes span {
+  color: lime;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .footer button:hover.interactions svg {
+  stroke: rgb(241, 98, 98);
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .footer button:hover.interactions span {
+  color: rgb(241, 98, 98);
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .footer button:hover.bookmark svg {
+  stroke: rebeccapurple;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .footer button:hover.bookmark span {
+  color: rebeccapurple;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .footer button:hover.share svg {
+  stroke: pink;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .footer button:hover.share span {
+  color: pink;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .footer button.likes.added svg {
+  stroke: lime;
+  fill: lime;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .footer button.likes.added span {
+  color: lime;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .footer button.bookmark.added svg {
+  stroke: rebeccapurple;
+  fill: rebeccapurple;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .footer button.bookmark.added span {
+  color: rebeccapurple;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .footer button svg {
+  stroke: #777575;
+  width: 1.125rem;
+  height: 1.125rem;
+  transition: 300ms ease-in-out;
+}
+#Bookmark .bookmark__grid-feed .bookmark_content .feed-section .feed .post .footer button span {
+  color: #777575;
+  transition: 300ms ease-in-out;
+}
+
+#Notification {
+  height: 100vh;
+}
+#Notification .notification__grid {
+  display: grid;
+  grid-template-columns: 1fr 2.4fr 1.2fr;
+}
+#Notification .notification__grid-feed {
+  height: 100vh;
+  overflow-y: scroll;
+}
+#Notification .notification__grid-feed-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 2rem;
+  padding-bottom: 0.75rem;
+  background-color: #000000;
+  border-bottom: 1px solid #777575;
+}
+#Notification .notification__grid-feed-header button {
+  background: transparent;
+  outline: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.125rem;
+  cursor: pointer;
+  padding: 0.5rem 0;
+}
+#Notification .notification__grid-feed-header button.active {
+  color: #1d9797;
+  font-weight: 600;
+}
+#Notification .notification__grid-feed::-webkit-scrollbar {
+  display: none;
+}
+#Notification .notification__grid-feed .notification_content .notification-section .notification li {
+  position: relative;
+  padding: 0.75rem 2rem;
+  border-bottom: 1px solid #777575;
+}
+#Notification .notification__grid-feed .notification_content .notification-section .notification li .user-img {
+  position: relative;
+  width: 1.625rem;
+  height: 1.625rem;
+}
+#Notification .notification__grid-feed .notification_content .notification-section .notification li .user-img img {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+#Notification .notification__grid-feed .notification_content .notification-section .notification li .name {
+  color: #fff;
+}
+#Notification .notification__grid-feed .notification_content .notification-section .notification li .body p {
+  margin: 0;
+  color: #1d9797;
+}
+#Notification .notification__grid-feed .notification_content .notification-section .notification li .timstamp span {
+  color: #777575;
+}
+#Notification .notification__grid-feed .notification_content .notification-section .notification li .post_img {
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+#Notification .notification__grid-feed .notification_content .notification-section .notification li .post_img img {
+  width: 100%;
+  height: 100%;
+}
+
+#Followers {
+  height: 100vh;
+}
+#Followers .followers__grid {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 2.4fr 1.2fr;
+}
+#Followers .followers__grid__followers .followers_header {
+  padding: 2rem;
+  border-bottom: 1px solid #777575;
+}
+#Followers .followers__grid__followers .followers_header button {
+  background: transparent;
+  outline: transparent;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #fff;
+}
+#Followers .followers__grid__followers .all_followers li {
+  padding: 0.75rem 2rem;
+  border-bottom: 1px solid #777575;
+}
+#Followers .followers__grid__followers .all_followers li .user-img {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+#Followers .followers__grid__followers .all_followers li .user-img img {
+  width: 100%;
+  height: 100%;
+}
+#Followers .followers__grid__followers .all_followers li .name {
+  color: #fff;
+}
+#Followers .followers__grid__followers .all_followers li .username {
+  color: #1d9797;
+}
+#Followers .followers__grid__followers .all_followers li .follow_btn {
+  background-color: #1d9797;
+  color: #fff;
+  padding: 0.5rem 1.375rem;
+  border-radius: 1.375rem;
+}
+
+#Following {
+  height: 100vh;
+}
+#Following .following__grid {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 2.4fr 1.2fr;
+}
+#Following .following__grid__following .following_header {
+  padding: 2rem;
+  border-bottom: 1px solid #777575;
+}
+#Following .following__grid__following .following_header button {
+  background: transparent;
+  outline: transparent;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #fff;
+}
+#Following .following__grid__following .all_followings li {
+  padding: 0.75rem 2rem;
+  border-bottom: 1px solid #777575;
+}
+#Following .following__grid__following .all_followings li .user-img {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+#Following .following__grid__following .all_followings li .user-img img {
+  width: 100%;
+  height: 100%;
+}
+#Following .following__grid__following .all_followings li .name {
+  color: #fff;
+}
+#Following .following__grid__following .all_followings li .username {
+  color: #1d9797;
+}
+#Following .following__grid__following .all_followings li .follow_btn {
+  background-color: #fff;
+  color: #f1470e;
+  padding: 0.5rem 1.375rem;
+  border-radius: 1.375rem;
+}
+
+#Search {
+  height: 100vh;
+}
+#Search .search__grid {
+  display: grid;
+  grid-template-columns: 1fr 2.4fr 1.2fr;
+}
+#Search .search__grid-feed {
+  height: 100vh;
+  overflow-y: scroll;
+}
+#Search .search__grid-feed::-webkit-scrollbar {
+  display: none;
+}
+#Search .search__grid-feed-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 2rem;
+  padding-bottom: 0.75rem;
+  background-color: #000000;
+  border-bottom: 1px solid #777575;
+}
+#Search .search__grid-feed-header button {
+  background: transparent;
+  outline: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0;
+}
+#Search .search__grid-feed-header button.active {
+  color: #1d9797;
+}
+#Search .search__grid-feed .search_content {
+  display: none;
+}
+#Search .search__grid-feed .search_content.active {
+  display: block;
+}
+#Search .search__grid-feed .search_content .feed-section .empty_feed {
+  text-align: center;
+  padding-top: 0.75rem;
+}
+#Search .search__grid-feed .search_content .feed-section .empty_feed p {
+  font-size: 1.375rem;
+}
+#Search .search__grid-feed .search_content .feed-section .feed {
+  position: relative;
+  padding: 0.75rem 2rem;
+  border-bottom: 1px solid #777575;
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  gap: 0.75rem;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .user-img {
+  position: relative;
+  width: 2.625rem;
+  height: 2.625rem;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .user-img img {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .user-img .is-online {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #21eb82;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .user-img .is-offline {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #777575;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .name {
+  font-size: 1rem;
+  color: #fff;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .name:hover {
+  text-decoration: underline;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .username,
+#Search .search__grid-feed .search_content .feed-section .feed .post .timestamp {
+  color: #777575;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .options {
+  position: relative;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .options button {
+  background: transparent;
+  border: none;
+  outline: transparent;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.625rem;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .options .drop-down {
+  position: absolute;
+  right: 1.5rem;
+  top: 3.75rem;
+  background-color: #1c1c1c;
+  padding: 2rem;
+  border-radius: 0.375rem;
+  animation: fade-out 300ms forwards;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .options .drop-down.active {
+  animation: fade-in 300ms forwards;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .options .drop-down li:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .options .drop-down li a {
+  color: #fff;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .body {
+  width: 100%;
+  display: block;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .body .text {
+  margin: 0;
+  color: #fff;
+  margin-bottom: 0.75rem;
+  letter-spacing: 1px;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .body .img {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .body .img img {
+  justify-self: center;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .footer {
+  padding-top: 0.75rem;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .footer button {
+  cursor: pointer;
+  border: none;
+  outline: transparent;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .footer button:hover.comment svg {
+  stroke: rgb(14, 14, 192);
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .footer button:hover.comment span {
+  color: rgb(14, 14, 192);
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .footer button:hover.likes svg {
+  stroke: lime;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .footer button:hover.likes span {
+  color: lime;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .footer button:hover.interactions svg {
+  stroke: rgb(241, 98, 98);
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .footer button:hover.interactions span {
+  color: rgb(241, 98, 98);
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .footer button:hover.bookmark svg {
+  stroke: rebeccapurple;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .footer button:hover.bookmark span {
+  color: rebeccapurple;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .footer button:hover.share svg {
+  stroke: pink;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .footer button:hover.share span {
+  color: pink;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .footer button.likes.added svg {
+  stroke: lime;
+  fill: lime;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .footer button.likes.added span {
+  color: lime;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .footer button.bookmark.added svg {
+  stroke: rebeccapurple;
+  fill: rebeccapurple;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .footer button.bookmark.added span {
+  color: rebeccapurple;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .footer button svg {
+  stroke: #777575;
+  width: 1.125rem;
+  height: 1.125rem;
+  transition: all 300ms ease-in-out;
+}
+#Search .search__grid-feed .search_content .feed-section .feed .post .footer button span {
+  color: #777575;
+  transition: all 300ms ease-in-out;
+}
+#Search .search__grid-feed .search_user {
+  display: none;
+}
+#Search .search__grid-feed .search_user.active {
+  display: block;
+}
+#Search .search__grid-feed .search_user .all_users li {
+  padding: 0.75rem 2rem;
+  border-bottom: 1px solid #777575;
+}
+#Search .search__grid-feed .search_user .all_users li .user-img {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+#Search .search__grid-feed .search_user .all_users li .user-img img {
+  width: 100%;
+  height: 100%;
+}
+#Search .search__grid-feed .search_user .all_users li .name {
+  color: #fff;
+}
+#Search .search__grid-feed .search_user .all_users li .username {
+  color: #1d9797;
+}
+#Search .search__grid-feed .search_user .all_users li .follow_btn {
+  background-color: #1d9797;
+  color: #fff;
+  padding: 0.5rem 1.375rem;
+  border-radius: 1.375rem;
+}
+#Search .search__grid-feed .search_groups {
+  display: none;
+}
+#Search .search__grid-feed .search_groups.active {
+  display: block;
+}
+#Search .search__grid-feed .search_groups .all_groups ul li {
+  padding: 0.75rem 2rem;
+}
+#Search .search__grid-feed .search_groups .all_groups ul li.empty_room p {
+  font-size: 1.375rem;
+  text-align: center;
+}
+#Search .search__grid-feed .search_groups .all_groups ul li .user-img {
+  width: 2.625rem;
+  height: 2.625rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+#Search .search__grid-feed .search_groups .all_groups ul li .user-img img {
+  width: 100%;
+  height: 100%;
+}
+#Search .search__grid-feed .search_groups .all_groups ul li .group_name {
+  font-size: 1rem;
+  display: block;
+  color: #fff;
+}
+#Search .search__grid-feed .search_groups .all_groups ul li p.creator {
+  color: #777575;
+  margin: 0;
+}
+#Search .search__grid-feed .search_groups .all_groups ul li p.creator small {
+  color: #1d9797;
+}
+#Search .search__grid-feed .search_groups .all_groups ul li .join {
+  color: #fff;
+  background-color: #1d9797;
+  padding: 0.5rem 1.375rem;
+  border-radius: 1.375rem;
+}
+
+#ChatRoom {
+  height: 100vh;
+}
+#ChatRoom .chat_room__grid {
+  display: grid;
+  grid-template-columns: 1fr 2.4fr 1.2fr;
+}
+#ChatRoom .chat_room__grid-feed {
+  height: 100vh;
+  overflow-y: scroll;
+}
+#ChatRoom .chat_room__grid-feed::-webkit-scrollbar {
+  display: none;
+}
+#ChatRoom .chat_room__grid-feed-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 2rem;
+  padding-bottom: 0.75rem;
+  background-color: #000000;
+  border-bottom: 1px solid #777575;
+}
+#ChatRoom .chat_room__grid-feed-header a svg {
+  width: 2rem;
+  height: 2rem;
+  stroke: #fff;
+}
+#ChatRoom .chat_room__grid-feed-header .room_details button {
+  background: transparent;
+  outline: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0;
+}
+#ChatRoom .chat_room__grid-feed-header .room_details button.active {
+  color: #1d9797;
+}
+#ChatRoom .chat_room__grid-feed-header .room_details small {
+  display: block;
+}
+#ChatRoom .chat_room__grid-feed-header .members_count {
+  color: #fff;
+}
+#ChatRoom .chat_room__grid-feed-header .exit_room {
+  color: #f1470e;
+}
+#ChatRoom .chat_room__grid-feed .chat_room_content #RoomChatBox {
+  width: 100%;
+  height: 81vh;
+  background-color: #1c1c1c;
+  padding: 1rem;
+  overflow-y: scroll;
+}
+#ChatRoom .chat_room__grid-feed .chat_room_content #RoomChatBox::-webkit-scrollbar {
+  display: none;
+}
+#ChatRoom .chat_room__grid-feed .chat_room_content #RoomChatBox .chat {
+  max-width: 20rem;
+  background-color: #262626;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+}
+#ChatRoom .chat_room__grid-feed .chat_room_content #RoomChatBox .chat.left {
+  margin-left: 0;
+}
+#ChatRoom .chat_room__grid-feed .chat_room_content #RoomChatBox .chat.right {
+  margin-left: auto;
+}
+#ChatRoom .chat_room__grid-feed .chat_room_content #RoomChatBox .chat:not(:last-child) {
+  margin-bottom: 1rem;
+}
+#ChatRoom .chat_room__grid-feed .chat_room_content #RoomChatBox .chat .username {
+  font-size: 0.75rem;
+  color: #1d9797;
+}
+#ChatRoom .chat_room__grid-feed .chat_room_content #RoomChatBox .chat .timestamp {
+  font-size: 0.75rem;
+  color: #777575;
+}
+#ChatRoom .chat_room__grid-feed .chat_room_content #RoomChatBox .chat p.body {
+  padding-top: 0.375rem;
+  margin: 0;
+  font-size: 0.75rem;
+  color: #fff;
+}
+#ChatRoom .chat_room__grid-feed .chat_room_content #ChatInput {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  outline: transparent;
+}
+#ChatRoom .chat_room__grid-feed .chat_room_content .chat_room_members {
+  padding: 2rem;
+}
+#ChatRoom .chat_room__grid-feed .chat_room_content .chat_room_members .title span {
+  font-size: 1.125rem;
+}
+#ChatRoom .chat_room__grid-feed .chat_room_content .chat_room_members .title .search_member input {
+  padding: 0.75rem;
+  border: none;
+  outline: transparent;
+  background-color: #1c1c1c;
+  color: #fff;
+  border-radius: 0.5rem;
+}
+#ChatRoom .chat_room__grid-feed .chat_room_content .chat_room_members ul li {
+  padding: 0.75rem 0;
+}
+#ChatRoom .chat_room__grid-feed .chat_room_content .chat_room_members ul li .user-img {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+#ChatRoom .chat_room__grid-feed .chat_room_content .chat_room_members ul li .user-img img {
+  width: 100%;
+  height: 100%;
+}
+#ChatRoom .chat_room__grid-feed .chat_room_content .chat_room_members ul li .name {
+  color: #fff;
+}
+#ChatRoom .chat_room__grid-feed .chat_room_content .chat_room_members ul li .username {
+  color: #1d9797;
+}
+#ChatRoom .chat_room__grid-feed .chat_room_content .chat_room_members ul li .remove {
+  color: #f1470e;
+  padding: 0.75rem 1.375rem;
+  border-radius: 1.375rem;
+}
+
+#Chat {
+  height: 100vh;
+}
+#Chat .chat__grid {
+  display: grid;
+  grid-template-columns: 0.8fr 2.6fr 1fr;
+}
+#Chat .chat__grid-feed {
+  height: 100vh;
+}
+#Chat .chat__grid-feed-header {
+  padding: 2rem;
+  padding-bottom: 0.75rem;
+  background-color: #000000;
+  border-bottom: 1px solid #777575;
+}
+#Chat .chat__grid-feed-header a svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  stroke: #fff;
+}
+#Chat .chat__grid-feed-header .chat_details button {
+  background: transparent;
+  outline: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0;
+}
+#Chat .chat__grid-feed-header .chat_details button.active {
+  color: #1d9797;
+}
+#Chat .chat__grid-feed .chat_room_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 12px;
+}
+#Chat .chat__grid-feed .chat_room_content #RoomChatBox {
+  width: 100%;
+  height: 82vh;
+  background-color: #1c1c1c;
+  padding: 1rem;
+  overflow-y: scroll;
+}
+#Chat .chat__grid-feed .chat_room_content #RoomChatBox::-webkit-scrollbar {
+  display: none;
+}
+#Chat .chat__grid-feed .chat_room_content #RoomChatBox .chat {
+  max-width: 20rem;
+  background-color: #262626;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+}
+#Chat .chat__grid-feed .chat_room_content #RoomChatBox .chat.left {
+  margin-left: 0;
+}
+#Chat .chat__grid-feed .chat_room_content #RoomChatBox .chat.right {
+  margin-left: auto;
+}
+#Chat .chat__grid-feed .chat_room_content #RoomChatBox .chat:not(:last-child) {
+  margin-bottom: 1rem;
+}
+#Chat .chat__grid-feed .chat_room_content #RoomChatBox .chat .username {
+  font-size: 0.75rem;
+  color: #1d9797;
+}
+#Chat .chat__grid-feed .chat_room_content #RoomChatBox .chat .timestamp {
+  font-size: 0.75rem;
+  color: #777575;
+}
+#Chat .chat__grid-feed .chat_room_content #RoomChatBox .chat p.body {
+  padding-top: 0.375rem;
+  margin: 0;
+  font-size: 0.75rem;
+  color: #fff;
+}
+#Chat .chat__grid-feed .chat_room_content #ChatInput {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  outline: transparent;
+}
+
+#Profile .profile__grid {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 2.4fr 1.2fr;
+}
+#Profile .profile__grid-profile {
+  height: 100%;
+  overflow-y: scroll;
+}
+#Profile .profile__grid-profile::-webkit-scrollbar {
+  display: none;
+}
+#Profile .profile__grid-profile .profile_header {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding-bottom: 0.75rem;
+}
+#Profile .profile__grid-profile .profile_header a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+}
+#Profile .profile__grid-profile .profile_header a svg {
+  width: 1.625rem;
+  height: 1.625rem;
+  stroke: #fff;
+}
+#Profile .profile__grid-profile .profile_header span {
+  font-size: 1.375rem;
+  color: #1d9797;
+}
+#Profile .profile__grid-profile .profile_header p {
+  margin: 0;
+  color: #777575;
+}
+#Profile .profile__grid-profile .cover_pic {
+  height: 20rem;
+  background-color: #1c1c1c;
+}
+#Profile .profile__grid-profile .cover_pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#Profile .profile__grid-profile .profile_pic {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  margin-top: -5.625rem;
+  z-index: 10;
+}
+#Profile .profile__grid-profile .profile_pic .img {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+#Profile .profile__grid-profile .profile_pic .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#Profile .profile__grid-profile .profile_pic .edit-profile {
+  align-self: last baseline;
+  margin-bottom: 2rem;
+}
+#Profile .profile__grid-profile .profile_pic .edit-profile a {
+  background-color: #1d9797;
+  color: #fff;
+  padding: 0.5rem 1.625rem;
+  border-radius: 1.375rem;
+}
+#Profile .profile__grid-profile .profile_details {
+  padding: 0.75rem 2rem;
+}
+#Profile .profile__grid-profile .profile_details .name {
+  font-size: 1.375rem;
+}
+#Profile .profile__grid-profile .profile_details .username {
+  color: #777575;
+}
+#Profile .profile__grid-profile .profile_details .bio {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+}
+#Profile .profile__grid-profile .profile_details .friends p {
+  margin: 0;
+  color: #777575;
+}
+#Profile .profile__grid-profile .profile_details .friends p span {
+  color: #fff;
+}
+#Profile .profile__grid-profile .posts .title {
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #777575;
+}
+#Profile .profile__grid-profile .posts .title span {
+  font-size: 1.125rem;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed {
+  position: relative;
+  padding: 0.75rem 2rem;
+  border-bottom: 1px solid #777575;
+  display: grid;
+  grid-template-columns: 1fr 12fr;
+  gap: 0.75rem;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .user-img {
+  position: relative;
+  width: 2.625rem;
+  height: 2.625rem;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .user-img img {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post {
+  position: relative;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .name {
+  font-size: 1rem;
+  color: #fff;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .name:hover {
+  text-decoration: underline;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .username,
+#Profile .profile__grid-profile .posts .all_posts .feed .post .timestamp {
+  color: #777575;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .options {
+  position: relative;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .options button {
+  background: transparent;
+  border: none;
+  outline: transparent;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.625rem;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .options .drop-down {
+  position: absolute;
+  right: 1.5rem;
+  top: 3.75rem;
+  background-color: #1c1c1c;
+  padding: 2rem;
+  border-radius: 0.375rem;
+  animation: fade-out 300ms forwards;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .options .drop-down.active {
+  animation: fade-in 300ms forwards;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .options .drop-down li:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .options .drop-down li a {
+  color: #fff;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .body .text {
+  margin: 0;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .body .img {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .body .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .footer {
+  padding-top: 0.75rem;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .footer button {
+  gap: 0.375rem;
+  cursor: pointer;
+  border: none;
+  outline: transparent;
+  background: transparent;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .footer button:hover.comment svg {
+  stroke: blue;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .footer button:hover.comment span {
+  color: blue;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .footer button:hover.likes svg {
+  stroke: lime;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .footer button:hover.likes span {
+  color: lime;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .footer button:hover.interactions svg {
+  stroke: rgb(241, 98, 98);
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .footer button:hover.interactions span {
+  color: rgb(241, 98, 98);
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .footer button:hover.bookmark svg {
+  stroke: rebeccapurple;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .footer button:hover.bookmark span {
+  color: rebeccapurple;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .footer button:hover.share svg {
+  stroke: pink;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .footer button:hover.share span {
+  color: pink;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .footer button.likes.added svg {
+  stroke: lime;
+  fill: lime;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .footer button.likes.added span {
+  color: lime;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .footer button.bookmark.added svg {
+  stroke: rebeccapurple;
+  fill: rebeccapurple;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .footer button.bookmark.added span {
+  color: rebeccapurple;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .footer button svg {
+  stroke: #777575;
+  width: 1.125rem;
+  height: 1.125rem;
+  transition: 300ms ease-in-out;
+}
+#Profile .profile__grid-profile .posts .all_posts .feed .post .footer button span {
+  color: #777575;
+  transition: 300ms ease-in-out;
+}
+
+#Settings .settings__grid {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 2.4fr 1.2fr;
+}
+#Settings .settings__grid .settings_content {
+  overflow-y: scroll;
+}
+#Settings .settings__grid .settings_content::-webkit-scrollbar {
+  display: none;
+}
+#Settings .settings__grid .settings_content .settings_header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #000000;
+  padding: 2rem;
+  padding-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.75rem;
+  border-bottom: 1px solid #777575;
+}
+#Settings .settings__grid .settings_content .settings_header a svg {
+  width: 1.625rem;
+  height: 1.625rem;
+  stroke: #fff;
+}
+#Settings .settings__grid .settings_content .settings_header span {
+  font-size: 1.375rem;
+}
+#Settings .settings__grid .settings_content .profile_update_form {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#Settings .settings__grid .settings_content .profile_update_form .img {
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border: 3px solid #1d9797;
+}
+#Settings .settings__grid .settings_content .profile_update_form .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#Settings .settings__grid .settings_content .profile_update_form input {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #1c1c1c;
+  color: #fff;
+  outline: transparent;
+  border: none;
+  border-bottom: 1px solid #1d9797;
+}
+#Settings .settings__grid .settings_content .profile_update_form input:not(:last-child) {
+  margin-bottom: 1rem;
+}
+#Settings .settings__grid .settings_content .profile_update_form textarea {
+  width: 100%;
+  height: 6.25rem;
+  background-color: #1c1c1c;
+  color: #fff;
+  outline: transparent;
+  border: none;
+  border-bottom: 1px solid #1d9797;
+}
+#Settings .settings__grid .settings_content .profile_update_form button {
+  margin-top: 0.75rem;
+  width: 100%;
+  border: none;
+  outline: transparent;
+  background-color: #1d9797;
+  color: #fff;
+  padding: 0.75rem;
+}
+#Settings .settings__grid .settings_content .settings_footer {
+  text-align: end;
+  padding: 0 2rem;
+}
+#Settings .settings__grid .settings_content .settings_footer a {
+  color: #1d9797;
+  text-decoration: underline;
+}
+#Settings .settings__grid .settings_content .my_rooms {
+  padding: 2rem;
+}
+#Settings .settings__grid .settings_content .my_rooms .title {
+  border-bottom: 1px solid #777575;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+#Settings .settings__grid .settings_content .my_rooms .title span {
+  font-size: 1.125rem;
+}
+#Settings .settings__grid .settings_content .my_rooms .rooms li.room {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #777575;
+}
+#Settings .settings__grid .settings_content .my_rooms .rooms li.room:not(:last-child) {
+  margin-bottom: 1rem;
+}
+#Settings .settings__grid .settings_content .my_rooms .rooms li.room a {
+  color: #1d9797;
+}
+#Settings .settings__grid .settings_content .my_rooms .rooms li.room span {
+  color: #fff;
+}
+#Settings .settings__grid .settings_content .my_rooms .rooms li.room a.delete_room {
+  color: #f1470e;
+}
+
+#CreatePost .create_post__grid {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 2.4fr 1.2fr;
+}
+#CreatePost .create_post__grid .create_post_content {
+  overflow-y: scroll;
+}
+#CreatePost .create_post__grid .create_post_content::-webkit-scrollbar {
+  display: none;
+}
+#CreatePost .create_post__grid .create_post_content .create_post_header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #000000;
+  padding: 2rem;
+  padding-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.75rem;
+  border-bottom: 1px solid #777575;
+}
+#CreatePost .create_post__grid .create_post_content .create_post_header a svg {
+  width: 1.625rem;
+  height: 1.625rem;
+  stroke: #fff;
+}
+#CreatePost .create_post__grid .create_post_content .create_post_header span {
+  font-size: 1.375rem;
+}
+#CreatePost .create_post__grid .create_post_content .create_post_form {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#CreatePost .create_post__grid .create_post_content .create_post_form input {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #1c1c1c;
+  color: #fff;
+  outline: transparent;
+  border: none;
+  border-bottom: 1px solid #1d9797;
+}
+#CreatePost .create_post__grid .create_post_content .create_post_form input:not(:last-child) {
+  margin-bottom: 1rem;
+}
+#CreatePost .create_post__grid .create_post_content .create_post_form textarea {
+  padding: 0.75rem;
+  width: 100%;
+  height: 6.25rem;
+  background-color: #1c1c1c;
+  color: #fff;
+  outline: transparent;
+  border: none;
+  border-bottom: 1px solid #1d9797;
+}
+#CreatePost .create_post__grid .create_post_content .create_post_form .img {
+  margin-top: 0.75rem;
+  width: 100%;
+  height: 22.5rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+#CreatePost .create_post__grid .create_post_content .create_post_form .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#CreatePost .create_post__grid .create_post_content .create_post_form button {
+  margin-top: 0.75rem;
+  width: 100%;
+  border: none;
+  outline: transparent;
+  background-color: #1d9797;
+  color: #fff;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+}
+
+#CreateRoom .create_room__grid {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 2.4fr 1.2fr;
+}
+#CreateRoom .create_room__grid .create_room_content {
+  overflow-y: scroll;
+}
+#CreateRoom .create_room__grid .create_room_content::-webkit-scrollbar {
+  display: none;
+}
+#CreateRoom .create_room__grid .create_room_content .create_room_header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #000000;
+  padding: 2rem;
+  padding-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.75rem;
+  border-bottom: 1px solid #777575;
+}
+#CreateRoom .create_room__grid .create_room_content .create_room_header a svg {
+  width: 1.625rem;
+  height: 1.625rem;
+  stroke: #fff;
+}
+#CreateRoom .create_room__grid .create_room_content .create_room_header span {
+  font-size: 1.375rem;
+}
+#CreateRoom .create_room__grid .create_room_content .create_room_form {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#CreateRoom .create_room__grid .create_room_content .create_room_form .img {
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+#CreateRoom .create_room__grid .create_room_content .create_room_form .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#CreateRoom .create_room__grid .create_room_content .create_room_form input {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #1c1c1c;
+  color: #fff;
+  outline: transparent;
+  border: none;
+  border-bottom: 1px solid #1d9797;
+}
+#CreateRoom .create_room__grid .create_room_content .create_room_form input:not(:last-child) {
+  margin-bottom: 1rem;
+}
+#CreateRoom .create_room__grid .create_room_content .create_room_form textarea {
+  padding: 0.75rem;
+  width: 100%;
+  height: 6.25rem;
+  background-color: #1c1c1c;
+  color: #fff;
+  outline: transparent;
+  border: none;
+  border-bottom: 1px solid #1d9797;
+}
+#CreateRoom .create_room__grid .create_room_content .create_room_form button {
+  margin-top: 0.75rem;
+  width: 100%;
+  border: none;
+  outline: transparent;
+  background-color: #1d9797;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+#NewPassword {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(rgba(255, 255, 255, 0.2941176471), rgba(255, 255, 255, 0.2941176471)), url("/static/assets/images/pattern.jpg");
+}
+#NewPassword .wrapper {
+  height: 100vh;
+}
+#NewPassword .new_password_form {
+  position: relative;
+  background: #fff;
+  border-radius: 0.25rem;
+  max-width: 31.25rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2549019608);
+  display: grid;
+  overflow: hidden;
+  padding: 2rem;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#NewPassword .new_password_form .title {
+  padding-bottom: 1rem;
+  text-align: center;
+}
+#NewPassword .new_password_form .title h2 {
+  font-size: 1.375rem;
+  color: #000;
+  margin-bottom: 0.375rem;
+}
+#NewPassword .new_password_form .title span {
+  color: #777575;
+  font-weight: normal;
+}
+#NewPassword .new_password_form form .form-control {
+  position: relative;
+}
+#NewPassword .new_password_form form .form-control:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+#NewPassword .new_password_form form .form-control input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 0.75rem;
+  border-radius: 0.25rem;
+  border: 1px solid #777575;
+  outline: transparent;
+  color: #777575;
+}
+#NewPassword .new_password_form form .form-control .eye {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+#NewPassword .new_password_form form .form-control .eye svg {
+  stroke: #1d9797;
+}
+#NewPassword .new_password_form form .form-control .eye .feather.active {
+  display: block;
+}
+#NewPassword .new_password_form form .form-control .eye .feather {
+  display: none;
+}
+#NewPassword .new_password_form form .error {
+  margin-bottom: 0.375rem;
+}
+#NewPassword .new_password_form form .error span {
+  color: #f1470e;
+  letter-spacing: 0.0625rem;
+  font-weight: 300;
+}
+#NewPassword .new_password_form form .submit-btn {
+  width: 100%;
+  padding: 0.75rem;
+  outline: transparent;
+  background: #1d9797;
+  color: #fff;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: 300ms;
+  font-size: 1rem;
+}
+
+.forget_password {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(rgba(255, 255, 255, 0.2941176471), rgba(255, 255, 255, 0.2941176471)), url("/static/assets/images/pattern.jpg");
+}
+.forget_password__form {
+  position: relative;
+  background: #fff;
+  border-radius: 0.25rem;
+  max-width: 31.25rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2549019608);
+  display: grid;
+  overflow: hidden;
+  padding: 2rem;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.forget_password__form .title {
+  padding-bottom: 1rem;
+  text-align: center;
+}
+.forget_password__form .title h2 {
+  font-size: 1.375rem;
+  color: #000;
+  margin-bottom: 0.375rem;
+}
+.forget_password__form form .form-control {
+  position: relative;
+}
+.forget_password__form form .form-control:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+.forget_password__form form .form-control input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 0.75rem;
+  border-radius: 0.25rem;
+  border: 1px solid #777575;
+  outline: transparent;
+  color: #777575;
+}
+.forget_password__form form .error {
+  margin-bottom: 0.375rem;
+}
+.forget_password__form form .error span {
+  color: #f1470e;
+  letter-spacing: 0.0625rem;
+  font-weight: 300;
+}
+.forget_password__form form .submit-btn {
+  width: 100%;
+  padding: 0.75rem;
+  outline: transparent;
+  background: #1d9797;
+  color: #fff;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: 300ms;
+  font-size: 1rem;
+}
+
+#AuthChangePassword .auth_change_password__grid {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 2.4fr 1.2fr;
+}
+#AuthChangePassword .auth_change_password__grid .auth_change_password_content {
+  overflow-y: scroll;
+}
+#AuthChangePassword .auth_change_password__grid .auth_change_password_content::-webkit-scrollbar {
+  display: none;
+}
+#AuthChangePassword .auth_change_password__grid .auth_change_password_content .auth_change_password_header {
+  background-color: #000000;
+  padding: 2rem;
+  padding-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.75rem;
+  border-bottom: 1px solid #777575;
+}
+#AuthChangePassword .auth_change_password__grid .auth_change_password_content .auth_change_password_header a svg {
+  width: 1.625rem;
+  height: 1.625rem;
+  stroke: #fff;
+}
+#AuthChangePassword .auth_change_password__grid .auth_change_password_content .auth_change_password_header span {
+  font-size: 1.375rem;
+}
+#AuthChangePassword .auth_change_password__grid .auth_change_password_content .auth_change_password_form {
+  margin-top: 50%;
+  transform: translateY(-50%);
+  padding: 2rem;
+}
+#AuthChangePassword .auth_change_password__grid .auth_change_password_content .auth_change_password_form .form-control {
+  margin-bottom: 1rem;
+}
+#AuthChangePassword .auth_change_password__grid .auth_change_password_content .auth_change_password_form .form-control .error {
+  color: #f1470e;
+}
+#AuthChangePassword .auth_change_password__grid .auth_change_password_content .auth_change_password_form .form-control input {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #1c1c1c;
+  color: #fff;
+  outline: transparent;
+  border: none;
+  border-bottom: 1px solid #1d9797;
+}
+#AuthChangePassword .auth_change_password__grid .auth_change_password_content .auth_change_password_form .form-control input:not(:last-child) {
+  margin-bottom: 1rem;
+}
+#AuthChangePassword .auth_change_password__grid .auth_change_password_content .auth_change_password_form button {
+  margin-top: 0.75rem;
+  width: 100%;
+  border: none;
+  outline: transparent;
+  background-color: #1d9797;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+#AuthChangePassword .auth_change_password__grid .auth_change_password_content .auth_change_password_form .footer {
+  text-align: end;
+  margin-top: 1rem;
+}
+#AuthChangePassword .auth_change_password__grid .auth_change_password_content .auth_change_password_form .footer a {
+  color: #1d9797;
+  text-decoration: underline;
+}
+
+#AuthForgetPassword .auth_forget_password__grid {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 2.4fr 1.2fr;
+}
+#AuthForgetPassword .auth_forget_password__grid .auth_forget_password_content {
+  overflow-y: scroll;
+}
+#AuthForgetPassword .auth_forget_password__grid .auth_forget_password_content::-webkit-scrollbar {
+  display: none;
+}
+#AuthForgetPassword .auth_forget_password__grid .auth_forget_password_content .auth_forget_password_header {
+  background-color: #000000;
+  padding: 2rem;
+  padding-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.75rem;
+  border-bottom: 1px solid #777575;
+}
+#AuthForgetPassword .auth_forget_password__grid .auth_forget_password_content .auth_forget_password_header a svg {
+  width: 1.625rem;
+  height: 1.625rem;
+  stroke: #fff;
+}
+#AuthForgetPassword .auth_forget_password__grid .auth_forget_password_content .auth_forget_password_header span {
+  font-size: 1.375rem;
+}
+#AuthForgetPassword .auth_forget_password__grid .auth_forget_password_content .auth_forget_password_form {
+  margin-top: 50%;
+  transform: translateY(-50%);
+  padding: 2rem;
+}
+#AuthForgetPassword .auth_forget_password__grid .auth_forget_password_content .auth_forget_password_form .form-control {
+  margin-bottom: 1rem;
+}
+#AuthForgetPassword .auth_forget_password__grid .auth_forget_password_content .auth_forget_password_form .form-control input {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #1c1c1c;
+  color: #fff;
+  outline: transparent;
+  border: none;
+  border-bottom: 1px solid #1d9797;
+}
+#AuthForgetPassword .auth_forget_password__grid .auth_forget_password_content .auth_forget_password_form .form-control input:not(:last-child) {
+  margin-bottom: 1rem;
+}
+#AuthForgetPassword .auth_forget_password__grid .auth_forget_password_content .auth_forget_password_form button {
+  margin-top: 0.75rem;
+  width: 100%;
+  border: none;
+  outline: transparent;
+  background-color: #1d9797;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+#SIGNIN {
+  width: 100%;
+  height: 100vh;
+  background: #1c1c1c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem;
+}
+#SIGNIN .signin_form {
+  background: #000;
+  border-radius: 0.25rem;
+  max-width: 56.25rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2549019608);
+  display: grid;
+  overflow: hidden;
+}
+@media (min-width: 48em) {
+  #SIGNIN .signin_form {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+}
+#SIGNIN .signin_form .form {
+  padding: 1.5rem;
+}
+@media (min-width: 48em) {
+  #SIGNIN .signin_form .form {
+    padding: 3.75rem 1.5rem;
+  }
+}
+#SIGNIN .signin_form .form .title {
+  padding-bottom: 1rem;
+  text-align: center;
+}
+#SIGNIN .signin_form .form .title h2 {
+  font-size: 1.375rem;
+  margin-bottom: 0.375rem;
+}
+#SIGNIN .signin_form .form .error {
+  margin-bottom: 0.375rem;
+}
+#SIGNIN .signin_form .form .error span {
+  color: #f1470e;
+  letter-spacing: 0.0625rem;
+  font-weight: 300;
+}
+#SIGNIN .signin_form .form form .form-control {
+  position: relative;
+}
+#SIGNIN .signin_form .form form .form-control:first-child {
+  margin-bottom: 0.75rem;
+}
+#SIGNIN .signin_form .form form .form-control input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 0.75rem;
+  border-radius: 0.25rem;
+  border: 1px solid #1d9797;
+  outline: transparent;
+  color: #777575;
+}
+#SIGNIN .signin_form .form form .form-control .eye {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+#SIGNIN .signin_form .form form .form-control .eye svg {
+  width: 1rem;
+  height: 1rem;
+  stroke: #1d9797;
+}
+#SIGNIN .signin_form .form form .form-control .eye .feather.active {
+  display: block;
+}
+#SIGNIN .signin_form .form form .form-control .eye .feather {
+  display: none;
+}
+#SIGNIN .signin_form .form form .forget {
+  padding: 0.75rem 0;
+}
+#SIGNIN .signin_form .form form .forget a {
+  color: #1d9797;
+  text-decoration: underline;
+}
+#SIGNIN .signin_form .form form .submit-btn {
+  width: 100%;
+  padding: 0.75rem;
+  outline: transparent;
+  background: #1d9797;
+  color: #fff;
+  border-radius: 0.25rem;
+  outline: 1px solid #1d9797;
+  cursor: pointer;
+  transition: 300ms;
+  font-size: 1rem;
+}
+#SIGNIN .signin_form .form form .submit-btn:hover {
+  outline: 1px solid #1d9797;
+  background: #000;
+  color: #1d9797;
+}
+#SIGNIN .signin_form .form .google-login {
+  text-align: center;
+}
+#SIGNIN .signin_form .form .google-login a {
+  display: block;
+  background: #fff;
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  transition: 300ms ease-in-out;
+  outline: 1px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+#SIGNIN .signin_form .form .google-login a:hover {
+  background: #000;
+}
+#SIGNIN .signin_form .form .google-login a:hover span {
+  color: #fff;
+}
+#SIGNIN .signin_form .form .google-login a img {
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-right: 0.375rem;
+}
+#SIGNIN .signin_form .form .google-login a span {
+  color: #000000;
+  transition: 300ms ease-in-out;
+  font-size: 0.875rem;
+}
+#SIGNIN .signin_form .form .signup-link {
+  margin-top: 1.5rem;
+}
+#SIGNIN .signin_form .form .signup-link span {
+  color: #fff;
+  font-weight: 200;
+}
+#SIGNIN .signin_form .form .signup-link span a {
+  color: #1d9797;
+  text-decoration: underline;
+}
+#SIGNIN .signin_form .image .img {
+  width: 100%;
+  height: 100%;
+}
+#SIGNIN .signin_form .image .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.signup {
+  width: 100%;
+  height: 100vh;
+  background: #1c1c1c;
+}
+@media (max-width: 61.9375em) {
+  .signup {
+    padding: 0rem 0.75rem;
+  }
+}
+.signup__form {
+  position: relative;
+  background: #000;
+  border-radius: 0.25rem;
+  max-width: 31.25rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2549019608);
+  display: grid;
+  overflow: hidden;
+  padding: 2rem;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.signup__form .title {
+  padding-bottom: 1rem;
+  text-align: center;
+}
+.signup__form .title h2 {
+  font-size: 1.375rem;
+  color: #fff;
+  margin-bottom: 0.375rem;
+}
+.signup__form .title span {
+  color: #777575;
+  font-weight: normal;
+}
+.signup__form form .form-control {
+  position: relative;
+}
+.signup__form form .form-control:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+.signup__form form .form-control input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 0.75rem;
+  border-radius: 0.25rem;
+  border: 1px solid #777575;
+  outline: transparent;
+  color: #777575;
+}
+.signup__form form .form-control .eye {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.signup__form form .form-control .eye svg {
+  stroke: #1d9797;
+}
+.signup__form form .form-control .eye .feather.active {
+  display: block;
+}
+.signup__form form .form-control .eye .feather {
+  display: none;
+}
+.signup__form form .error {
+  margin-bottom: 0.375rem;
+}
+.signup__form form .error span {
+  color: #f1470e;
+  letter-spacing: 0.0625rem;
+  font-weight: 100;
+}
+.signup__form form .submit-btn {
+  width: 100%;
+  padding: 0.75rem;
+  outline: transparent;
+  background: #1d9797;
+  color: #fff;
+  border-radius: 0.25rem;
+  border: 1px solid #1d9797;
+  cursor: pointer;
+  transition: 300ms;
+  font-size: 1rem;
+}
+.signup__form form .submit-btn:hover {
+  border: 1px solid #1d9797;
+  background: #000;
+  color: #1d9797;
+}
+.signup__form .google-login {
+  text-align: center;
+}
+.signup__form .google-login a {
+  display: block;
+  background: #1d9797;
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  transition: 300ms ease-in-out;
+  border: 1px solid #1d9797;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.signup__form .google-login a:hover {
+  background: #000;
+}
+.signup__form .google-login a:hover span {
+  color: #1d9797;
+}
+.signup__form .google-login a img {
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-right: 0.375rem;
+}
+.signup__form .google-login a span {
+  color: #fff;
+  transition: 300ms ease-in-out;
+}
+.signup__form .signin-link {
+  margin-top: 1.5rem;
+}
+.signup__form .signin-link span {
+  color: #fff;
+}
+.signup__form .signin-link span a {
+  color: #1d9797;
+  text-decoration: underline;
+}
+
+/*# sourceMappingURL=style.css.map */

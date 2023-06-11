@@ -1,0 +1,158 @@
+{% extends 'main.html' %}{% load static %}{% block content %}
+<main id="SIGNUP" class="signup">
+  <div class="signup__form">
+    <div class="title">
+      <h2>Sign Up</h2>
+      <span>The faster you fill up. the faster you get the expirience</span>
+    </div>
+
+    <form action="" method="post">
+      <div class="form-control">{{form.username}}</div>
+      {% if form.username.errors %}
+      <div class="error">
+        <span>{{form.username.errors}}</span>
+      </div>
+      {% endif %}
+
+      <div class="form-control">{{form.name}}</div>
+      {% if form.name.errors %}
+      <div class="error">
+        <span>{{form.name.errors}}</span>
+      </div>
+      {% endif %}
+
+      <div class="form-control">{{form.email}}</div>
+      {% if form.email.errors %}
+      <div class="error">
+        <span>{{form.email.errors}}</span>
+      </div>
+      {% endif %}
+
+      <div class="form-control">
+        {{form.password1}}
+        <div class="eye">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-eye-off active"
+          >
+            <path
+              d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
+            ></path>
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-eye"
+          >
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+        </div>
+      </div>
+
+      <div class="form-control">
+        {{form.password2}}
+        <div class="eye">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-eye-off active"
+          >
+            <path
+              d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"
+            ></path>
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-eye"
+          >
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+        </div>
+        {% if form.password2.errors %}
+        <div class="error">
+          <span>{{form.password2.errors }}</span>
+        </div>
+        {% endif %}
+      </div>
+
+      <button class="submit-btn" type="submit">Sign Up</button>
+    </form>
+    <div class="google-login">
+      <a href=""
+        ><img src="{% static 'assets/icons/google.png' %}" alt="" /><span
+          >Sign up with Google</span
+        ></a
+      >
+    </div>
+    <div class="signin-link">
+      <span>Already have a account? <a href="{% url 'login' %}">Sign In</a></span>
+    </div>
+  </div>
+</main>
+<script>
+  const SIGNUP = document.getElementById('SIGNUP');
+  let password = SIGNUP.querySelectorAll('.eye')[0];
+  let pwdEyeOff = password.querySelector('.feather-eye-off');
+  let pwdEyeOn = password.querySelector('.feather-eye');
+  password.addEventListener('click', (e) => {
+    let pwdInp = password.parentElement.children[0];
+    pwdEyeOff.classList.toggle('active');
+    pwdEyeOn.classList.toggle('active');
+
+    if (!pwdEyeOff.classList.contains('active')) {
+      pwdInp.setAttribute('type', 'text');
+    } else {
+      pwdInp.setAttribute('type', 'password');
+    }
+  });
+
+  let confirmPassword = SIGNUP.querySelectorAll('.eye')[1];
+  let confirmEyeOff = confirmPassword.querySelector('.feather-eye-off');
+  let confirmEyeOn = confirmPassword.querySelector('.feather-eye');
+  confirmPassword.addEventListener('click', (e) => {
+    let cPwdInp = confirmPassword.parentElement.children[0];
+    confirmEyeOff.classList.toggle('active');
+    confirmEyeOn.classList.toggle('active');
+
+    if (!confirmEyeOff.classList.contains('active')) {
+      cPwdInp.setAttribute('type', 'text');
+    } else {
+      cPwdInp.setAttribute('type', 'password');
+    }
+  });
+</script>
+{% endblock %}

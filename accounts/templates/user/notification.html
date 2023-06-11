@@ -1,0 +1,60 @@
+{% extends 'main.html' %}{% load static %}{% block content %}
+<main id="Notification" class="notification wrapper">
+  <div class="notification__grid w-100">
+    <!-- side bar  -->
+    {% include 'sidebar.html' %}
+    <!-- side bar end -->
+    <!-- notification feed  -->
+    <div class="notification__grid-feed">
+      <div class="notification__grid-feed-header flex flex-ai-c flex-jc-s">
+        <button class="active">Notifications</button>
+      </div>
+      <section class="notification_content">
+        <div class="notification-section">
+          <ul class="notification">
+            {% for notification in all_notifications %} {% for user in notification.users.all %}
+            <li>
+              <div class="flex flex-ai-c flex-jc-sb">
+                <div class="flex flex-ai-c flex-jc-s gp-12">
+                  <a href="" class="user-img">
+                    <img src="/static/assets/images/default.jpg" alt="" />
+                  </a>
+                  <a href="" class="name"><span>{{user.username}}</span></a>
+                  <div class="body">
+                    <p style="color: gray">Requested to join</p>
+                  </div>
+                  <a href="" class="timstamp"
+                    ><span style="font-size: 16px; color: darkcyan"
+                      >{{notification.room.room}}</span
+                    ></a
+                  >
+                  <!-- <div class="timstamp"><span>{{notification.created_at}} ago</span></div> -->
+                </div>
+
+                <div>
+                  <a
+                    href="{% url 'accept_chat_room_request' notification.room.room user.username %}"
+                    style="
+                      background-color: darkcyan;
+                      display: block;
+                      padding: 8px 22px;
+                      color: #fff;
+                      border-radius: 16px;
+                    "
+                    >Accept</a
+                  >
+                </div>
+              </div>
+            </li>
+            {% endfor %} {% endfor %}
+          </ul>
+        </div>
+      </section>
+    </div>
+    <!-- notification feed end -->
+    <!-- rightSidebar  -->
+    {% include 'activitybar.html' %}
+    <!-- rightSidebar end -->
+  </div>
+</main>
+{% endblock %}

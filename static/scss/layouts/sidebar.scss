@@ -1,0 +1,105 @@
+@use '../utils' as *;
+@use '../mixins' as *;
+
+.sidebar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  border-right: 1px solid $ColorGray;
+  &__logo {
+    margin-bottom: rem(32);
+    a {
+      h1 {
+        color: $ColorMain;
+        margin: 0;
+      }
+    }
+  }
+  &__links {
+    li.link {
+      position: relative;
+      &:not(:last-child) {
+        margin-bottom: rem(24);
+      }
+      &.active {
+        a {
+          svg {
+            stroke-width: rem(2);
+          }
+          span {
+            font-weight: 500;
+          }
+        }
+      }
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: rem(12);
+        svg {
+          stroke: $ColorLight;
+          stroke-width: rem(1);
+          width: rem(22);
+          height: rem(22);
+        }
+
+        span {
+          color: $ColorLight;
+          font-size: $f-exmd;
+        }
+        span.notification {
+          position: absolute;
+          top: rem(-2);
+          left: rem(-2);
+          width: rem(12);
+          height: rem(12);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          background-color: $ColorError;
+        }
+      }
+    }
+  }
+  &__post-btn {
+    a {
+      display: block;
+      padding: rem(12) rem(60);
+      letter-spacing: 1px;
+      background-color: $ColorMain;
+      color: $ColorLight;
+      border-radius: rem(22);
+      @include trans3;
+      font-size: $f-md;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+  &__user {
+    position: relative;
+    cursor: pointer;
+    background: transparent;
+    .user-img {
+      width: rem(36);
+      height: rem(36);
+      border-radius: 50%;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .name {
+      margin-left: rem(12);
+      color: $ColorLight;
+    }
+    .username {
+      margin-left: rem(12);
+      color: $ColorGray;
+    }
+  }
+}

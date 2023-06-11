@@ -1,0 +1,329 @@
+@use '../utils' as *;
+@use '../animations' as *;
+@use '../mixins' as *;
+
+#Search {
+  height: 100vh;
+  .search {
+    &__grid {
+      display: grid;
+      grid-template-columns: 1fr 2.4fr 1.2fr;
+      &-feed {
+        height: 100vh;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        &-header {
+          position: sticky;
+          top: 0;
+          z-index: 10;
+          padding: rem(32);
+          padding-bottom: rem(12);
+          background-color: $ColorPrimary;
+          border-bottom: 1px solid $ColorGray;
+          button {
+            background: transparent;
+            outline: transparent;
+            border: none;
+            color: $ColorLight;
+            font-size: $f-exmd;
+            font-weight: 600;
+            cursor: pointer;
+            padding: rem(8) 0;
+            &.active {
+              color: $ColorMain;
+            }
+          }
+        }
+        .search_content {
+          display: none;
+          &.active {
+            display: block;
+          }
+          .feed-section {
+            .empty_feed {
+              text-align: center;
+              padding-top: rem(12);
+              p {
+                font-size: $f-lr;
+              }
+            }
+            .feed {
+              position: relative;
+              padding: rem(12) rem(32);
+              border-bottom: 1px solid $ColorGray;
+              display: grid;
+              grid-template-columns: 1fr 10fr;
+              gap: rem(12);
+
+              .user-img {
+                position: relative;
+                width: rem(42);
+                height: rem(42);
+                img {
+                  border-radius: 50%;
+                  width: 100%;
+                  height: 100%;
+                }
+                .is-online {
+                  position: absolute;
+                  right: 0;
+                  bottom: 0;
+                  border-radius: 50%;
+                  width: rem(12);
+                  height: rem(12);
+                  background-color: $ColorSuccess;
+                }
+                .is-offline {
+                  position: absolute;
+                  right: 0;
+                  bottom: 0;
+                  border-radius: 50%;
+                  width: rem(12);
+                  height: rem(12);
+                  background-color: $ColorGray;
+                }
+              }
+              .post {
+                .name {
+                  font-size: $f-md;
+                  color: $ColorLight;
+                  &:hover {
+                    text-decoration: underline;
+                  }
+                }
+                .username,
+                .timestamp {
+                  color: $ColorGray;
+                }
+                .options {
+                  position: relative;
+                  button {
+                    background: transparent;
+                    border: none;
+                    outline: transparent;
+                    cursor: pointer;
+                    color: $ColorLight;
+                    font-size: $f-xl;
+                  }
+                  .drop-down {
+                    position: absolute;
+                    right: rem(24);
+                    top: rem(60);
+                    background-color: $ColorSecondary;
+                    padding: rem(32);
+                    border-radius: rem(6);
+                    animation: fade-out 300ms forwards;
+                    &.active {
+                      animation: fade-in 300ms forwards;
+                    }
+                    li {
+                      &:not(:last-child) {
+                        margin-bottom: rem(12);
+                      }
+                      a {
+                        color: $ColorLight;
+                      }
+                    }
+                  }
+                }
+
+                .body {
+                  width: 100%;
+                  display: block;
+                  .text {
+                    margin: 0;
+                    color: $ColorLight;
+                    margin-bottom: rem(12);
+                    letter-spacing: 1px;
+                  }
+                  .img {
+                    border-radius: rem(8);
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    img {
+                      justify-self: center;
+                      width: 100%;
+                      height: 100%;
+                      object-fit: contain;
+                    }
+                  }
+                }
+                .footer {
+                  padding-top: rem(12);
+                  button {
+                    cursor: pointer;
+                    border: none;
+                    outline: transparent;
+                    background: transparent;
+                    display: flex;
+                    align-items: center;
+                    gap: rem(6);
+                    &:hover {
+                      &.comment {
+                        svg {
+                          stroke: rgb(14, 14, 192);
+                        }
+                        span {
+                          color: rgb(14, 14, 192);
+                        }
+                      }
+                      &.likes {
+                        svg {
+                          stroke: lime;
+                        }
+                        span {
+                          color: lime;
+                        }
+                      }
+                      &.interactions {
+                        svg {
+                          stroke: rgb(241, 98, 98);
+                        }
+                        span {
+                          color: rgb(241, 98, 98);
+                        }
+                      }
+                      &.bookmark {
+                        svg {
+                          stroke: rebeccapurple;
+                        }
+                        span {
+                          color: rebeccapurple;
+                        }
+                      }
+                      &.share {
+                        svg {
+                          stroke: pink;
+                        }
+                        span {
+                          color: pink;
+                        }
+                      }
+                    }
+                    &.likes.added {
+                      svg {
+                        stroke: lime;
+                        fill: lime;
+                      }
+                      span {
+                        color: lime;
+                      }
+                    }
+                    &.bookmark.added {
+                      svg {
+                        stroke: rebeccapurple;
+                        fill: rebeccapurple;
+                      }
+                      span {
+                        color: rebeccapurple;
+                      }
+                    }
+                    svg {
+                      stroke: $ColorGray;
+                      width: rem(18);
+                      height: rem(18);
+                      @include trans3;
+                    }
+                    span {
+                      color: $ColorGray;
+                      @include trans3;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .search_user {
+          display: none;
+          &.active {
+            display: block;
+          }
+          .all_users {
+            li {
+              padding: rem(12) rem(32);
+              border-bottom: 1px solid $ColorGray;
+              .user-img {
+                display: block;
+                width: rem(32);
+                height: rem(32);
+                border-radius: 50%;
+                overflow: hidden;
+                img {
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+              .name {
+                color: $ColorLight;
+              }
+              .username {
+                color: $ColorMain;
+              }
+              .follow_btn {
+                background-color: $ColorMain;
+                color: $ColorLight;
+                padding: rem(8) rem(22);
+                border-radius: rem(22);
+              }
+            }
+          }
+        }
+        .search_groups {
+          display: none;
+          &.active {
+            display: block;
+          }
+
+          .all_groups {
+            ul {
+              li {
+                padding: rem(12) rem(32);
+
+                &.empty_room {
+                  p {
+                    font-size: $f-lr;
+                    text-align: center;
+                  }
+                }
+
+                .user-img {
+                  width: rem(42);
+                  height: rem(42);
+                  border-radius: 50%;
+                  overflow: hidden;
+                  img {
+                    width: 100%;
+                    height: 100%;
+                  }
+                }
+                .group_name {
+                  font-size: $f-md;
+                  display: block;
+                  color: $ColorLight;
+                }
+                p.creator {
+                  color: $ColorGray;
+                  margin: 0;
+                  small {
+                    color: $ColorMain;
+                  }
+                }
+                .join {
+                  color: $ColorLight;
+                  background-color: $ColorMain;
+                  padding: rem(8) rem(22);
+                  border-radius: rem(22);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

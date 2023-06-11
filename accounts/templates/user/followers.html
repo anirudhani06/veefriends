@@ -1,0 +1,48 @@
+{% extends 'main.html' %}{% load static %} {% block content %}
+<main id="Followers" class="followers wrapper">
+  <div class="followers__grid w-100">
+    <!-- side bar  -->
+    {% include 'sidebar.html' %}
+    <!-- side bar end -->
+    <!-- followers feed  -->
+    <section class="followers__grid__followers">
+      <div class="followers_header">
+        <button type="button">Followers ({{followers.count}})</button>
+      </div>
+      <ul class="all_followers">
+        {% if followers.count == 0 %}
+        <div style="text-align: center; font-size: 22px; padding: 12px">No followers</div>
+        {% else %} {% for follower in followers %}
+        <li class="flex flex-ai-c flex-jc-sb">
+          <div class="flex flex-ai-c flex-jc-s gp-12">
+            <a href="{% url 'profile' follower.id %}" class="user-img">
+              <img src="{{follower.avatar.url}}" alt="" />
+            </a>
+            <div>
+              <a href="{% url 'profile' follower.id %}" class="name">{{follower.name}}</a>
+              <a href="{% url 'profile' follower.id %}" class="username">@{{follower.username}}</a>
+            </div>
+          </div>
+          {% if request.user.profile not in follower.followers.all %}
+          <small style="display: none"></small>
+          {% if follower in request.user.profile.followers.all %}
+          <a href="{% url 'follow' follower.id %}" class="follow_btn">Followback</a>
+          {% endif %} {% endif %} {% if request.user.profile in follower.followers.all %}
+          <a
+            href="{% url 'follow' follower.id %}"
+            class="follow_btn"
+            style="background-color: #fff; color: red"
+            >Unfollow</a
+          >
+          {% endif %}
+        </li>
+        {% endfor %} {% endif %}
+      </ul>
+    </section>
+    <!-- followers feed end -->
+    <!-- rightSidebar  -->
+    {% include 'activitybar.html' %}
+    <!-- rightSidebar end -->
+  </div>
+</main>
+{% endblock %}

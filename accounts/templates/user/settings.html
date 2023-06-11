@@ -1,0 +1,80 @@
+{% extends 'main.html' %}{% load static %}{% block content %}
+<main id="Settings" class="settings wrapper">
+  <div class="settings__grid w-100">
+    <!-- side bar -->
+
+    {% include 'sidebar.html' %}
+    <!-- side bar end -->
+    <!-- settings  -->
+
+    <section class="settings_content">
+      <div class="settings_header">
+        <a href="{{request.META.HTTP_REFERER}}"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-arrow-left"
+          >
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </a>
+        <span>Settings</span>
+      </div>
+      <form action="" class="profile_update_form" method="post" enctype="multipart/form-data">
+        <div class="img" id="Preview_image">
+          <img src="{{user.avatar.url}}" alt="" id="user_preview_image" />
+        </div>
+        <input type="file" name="avatar" onchange="previewImage(event)" />
+        <input type="file" required name="cover_picture" />
+        <input type="text" name="name" value="{{user.name}}" required />
+        <input type="text" name="username" value="{{user.username}}" required />
+        <input type="email" name="email" value="{{user.email}}" required />
+        <textarea name="bio" id="" cols="30" rows="10" style="padding: 12px" required>
+{{user.bio}}</textarea
+        >
+        <button type="submit">Save Changes</button>
+      </form>
+      <div class="settings_footer">
+        <a href="{% url 'change_password' %}">Change Password</a>
+      </div>
+      <div class="my_rooms">
+        <div class="title flex flex-ai-c flex-jc-sb">
+          <span>Rooms</span>
+          <small>(5)</small>
+        </div>
+        <ul class="rooms">
+          {% for room in chat_rooms %}
+          <li class="room">
+            <div><a href="">{{room.room}}</a> <span>{{room.members.all.count}} </span>Members</div>
+            <a href="" class="delete_room">Delete Room</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <!-- settings end -->
+    <!-- rightSidebar  -->
+    {% include 'activitybar.html' %}
+    <!-- rightSidebar end -->
+  </div>
+</main>
+
+<script>
+  const previewImage = (event) => {
+    if (event.target.files.length > 0) {
+      let src = URL.createObjectURL(event.target.files[0]);
+      let preview = document.getElementById('user_preview_image');
+      preview.src = src;
+    }
+  };
+</script>
+{% endblock %}
